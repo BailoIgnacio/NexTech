@@ -1,3 +1,7 @@
+// Script de seed: pobla la base de datos con productos de ejemplo.
+// Ejecutar con: npm run seed
+// ATENCIÓN: borra y reemplaza TODOS los productos existentes.
+
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const { v4: uuidv4 } = require('uuid');
@@ -10,6 +14,7 @@ const db = low(adapter);
 
 db.defaults({ products: [] }).write();
 
+// Catálogo inicial con 16 productos divididos en 4 categorías
 const products = [
   // LAPTOPS
   {
@@ -340,6 +345,7 @@ const products = [
   }
 ];
 
+// Reemplaza toda la colección de productos en la base de datos
 db.set('products', products).write();
 
 console.log(`✅ Seed: ${products.length} productos insertados`);

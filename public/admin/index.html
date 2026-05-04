@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — NexTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-logo">
+        <span>NexTech</span>
+      </div>
+      <nav class="admin-nav">
+        <a href="#" class="active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:middle;margin-right:8px">
+            <rect x="2" y="3" width="7" height="7"/>
+            <rect x="15" y="3" width="7" height="7"/>
+            <rect x="2" y="14" width="7" height="7"/>
+            <rect x="15" y="14" width="7" height="7"/>
+          </svg>
+          Productos
+        </a>
+        <a href="../index.html" style="margin-top:auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:middle;margin-right:8px">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Ver tienda
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="admin-main">
+
+      <!-- TOPBAR -->
+      <div class="admin-topbar">
+        <h1>Gestión de Productos</h1>
+        <a href="../index.html" class="btn-ver-tienda">&#8592; Ver tienda</a>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="admin-content">
+
+        <!-- STATS CARDS -->
+        <div class="stats-cards">
+          <div class="stat-card">
+            <p class="stat-card-number" id="stat-total">—</p>
+            <p class="stat-card-label">Total Productos</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card-number" id="stat-destacados">—</p>
+            <p class="stat-card-label">Destacados</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card-number" id="stat-novedades">—</p>
+            <p class="stat-card-label">Novedades</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card-number" id="stat-sin-stock">—</p>
+            <p class="stat-card-label">Sin Stock</p>
+          </div>
+        </div>
+
+        <!-- TABLE SECTION -->
+        <div class="admin-table-section">
+          <div class="admin-table-header">
+            <h2>Productos</h2>
+            <div class="admin-table-actions">
+              <input type="text" id="admin-search" class="search-table" placeholder="Buscar por nombre, marca...">
+              <button class="btn-nuevo" onclick="window.openProductModal()">+ Nuevo Producto</button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Imagen</th>
+                  <th>Nombre</th>
+                  <th>Categoría</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+                  <th>Destacado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="products-tbody">
+                <tr>
+                  <td colspan="7" style="text-align:center;padding:3rem;color:var(--text-muted)">Cargando...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PRODUCTO -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-title">Nuevo Producto</h2>
+        <button class="modal-close" onclick="window.closeProductModal()" aria-label="Cerrar">×</button>
+      </div>
+
+      <form id="product-form" onsubmit="window.saveProduct(event)">
+        <div class="form-grid">
+
+          <!-- Nombre -->
+          <div class="form-group full">
+            <label for="field-nombre">Nombre *</label>
+            <input type="text" id="field-nombre" name="nombre" placeholder="Ej: iPhone 15 Pro" required>
+          </div>
+
+          <!-- Descripción -->
+          <div class="form-group full">
+            <label for="field-descripcion">Descripción</label>
+            <textarea id="field-descripcion" name="descripcion" placeholder="Descripción detallada del producto..."></textarea>
+          </div>
+
+          <!-- Precio -->
+          <div class="form-group">
+            <label for="field-precio">Precio (ARS) *</label>
+            <input type="number" id="field-precio" name="precio" placeholder="Ej: 450000" min="1" step="1000" required>
+          </div>
+
+          <!-- Stock -->
+          <div class="form-group">
+            <label for="field-stock">Stock</label>
+            <input type="number" id="field-stock" name="stock" placeholder="Ej: 10" min="0" value="0">
+          </div>
+
+          <!-- Categoría -->
+          <div class="form-group">
+            <label for="field-categoria">Categoría</label>
+            <select id="field-categoria" name="categoria">
+              <option value="">Seleccionar...</option>
+              <option value="Laptops">Laptops</option>
+              <option value="Celulares">Celulares</option>
+              <option value="Auriculares">Auriculares</option>
+              <option value="Accesorios">Accesorios</option>
+            </select>
+          </div>
+
+          <!-- Color -->
+          <div class="form-group">
+            <label for="field-color">Color</label>
+            <select id="field-color" name="color">
+              <option value="">Seleccionar...</option>
+              <option value="Negro">Negro</option>
+              <option value="Blanco">Blanco</option>
+              <option value="Gris">Gris</option>
+              <option value="Plateado">Plateado</option>
+            </select>
+          </div>
+
+          <!-- Marca -->
+          <div class="form-group full">
+            <label for="field-marca">Marca</label>
+            <input type="text" id="field-marca" name="marca" placeholder="Ej: Apple, Samsung, Sony...">
+          </div>
+
+          <!-- Imagen URL -->
+          <div class="form-group full">
+            <label for="field-imagen-url">URL de imagen principal</label>
+            <input type="url" id="field-imagen-url" name="imagen_url" placeholder="https://picsum.photos/seed/producto/600/600">
+          </div>
+
+          <!-- Imágenes extra -->
+          <div class="form-group full">
+            <label for="field-imagenes-extra">Imágenes adicionales</label>
+            <textarea id="field-imagenes-extra" name="imagenes_extra" placeholder="URLs separadas por coma&#10;Ej: https://url1.com, https://url2.com" style="min-height:60px"></textarea>
+          </div>
+
+          <!-- Checkboxes -->
+          <div class="form-group full">
+            <div class="form-checks">
+              <label class="form-check">
+                <input type="checkbox" id="field-destacado" name="destacado">
+                Producto destacado
+              </label>
+              <label class="form-check">
+                <input type="checkbox" id="field-novedad" name="novedad">
+                Novedad
+              </label>
+              <label class="form-check">
+                <input type="checkbox" id="field-con-stock" name="con_stock" checked>
+                Con stock
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="window.closeProductModal()">Cancelar</button>
+          <button type="submit" class="btn-save">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="../js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexTech — Tecnología Premium</title>
+  <meta name="description" content="NexTech: laptops, celulares, auriculares y accesorios de las mejores marcas. Envíos a todo el país.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>window.WHATSAPP_CONFIG = { number: "5491112345678" };</script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <nav class="nav-left">
+      <a href="index.html">Inicio</a>
+      <a href="products.html">Productos</a>
+      <a href="products.html?categoria=Laptops">Laptops</a>
+      <a href="products.html?categoria=Celulares">Celulares</a>
+    </nav>
+    <a href="index.html" class="logo">NexTech</a>
+    <div class="nav-right">
+      <div class="search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted)">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Buscar productos..." onkeydown="if(event.key==='Enter')location.href='products.html?search='+encodeURIComponent(this.value)">
+      </div>
+      <button id="cart-btn" class="cart-btn" aria-label="Carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span id="cart-badge" class="cart-badge" style="display:none">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- SUB HEADER -->
+  <div id="sub-header">
+    Envíos a todo el país &nbsp;|&nbsp; Aceptamos todos los medios de pago &nbsp;|&nbsp; Garantía oficial
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <img src="https://picsum.photos/seed/nextech-hero/1600/480" alt="Hero NexTech" class="hero-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>NexTech</h1>
+      <p>Tecnología Premium — Envíos a Todo el País</p>
+    </div>
+  </section>
+
+  <!-- DESTACADOS -->
+  <section class="section" id="featured">
+    <div class="section-header">
+      <h2 class="section-title">Destacados</h2>
+      <div class="carousel-controls">
+        <button id="carousel-prev" class="carousel-btn" aria-label="Anterior">&#8592;</button>
+        <button id="carousel-next" class="carousel-btn" aria-label="Siguiente">&#8594;</button>
+      </div>
+    </div>
+    <div id="featured-grid" class="products-grid-4">
+      <div style="grid-column:1/-1;padding:3rem;text-align:center;color:var(--text-muted);font-family:Jost">Cargando productos...</div>
+    </div>
+  </section>
+
+  <!-- NOVEDADES -->
+  <section class="section" id="nuevos" style="background:var(--bg-soft)">
+    <div class="section-header">
+      <h2 class="section-title">Novedades</h2>
+      <a href="products.html?novedad=true" style="font-family:'Jost',sans-serif;font-size:0.85rem;color:var(--gold);text-decoration:none;letter-spacing:0.1em">Ver todas &#8594;</a>
+    </div>
+    <div id="new-grid" class="products-grid-4">
+      <div style="grid-column:1/-1;padding:3rem;text-align:center;color:var(--text-muted);font-family:Jost">Cargando productos...</div>
+    </div>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <div class="category-block">
+    <img src="https://picsum.photos/seed/laptops-cat/800/500" alt="Laptops" class="cat-img">
+    <div class="cat-info">
+      <h2>Laptops</h2>
+      <p>Potencia portátil para trabajo, estudio y creatividad. Las mejores marcas con garantía oficial y soporte técnico especializado.</p>
+      <a href="products.html?categoria=Laptops" class="btn-ver-mas">Ver Laptops</a>
+    </div>
+  </div>
+
+  <div class="category-block reverse">
+    <div class="cat-info">
+      <h2>Celulares</h2>
+      <p>Conectado siempre con los smartphones más avanzados. Últimos modelos con cámara profesional y rendimiento excepcional.</p>
+      <a href="products.html?categoria=Celulares" class="btn-ver-mas">Ver Celulares</a>
+    </div>
+    <img src="https://picsum.photos/seed/celulares-cat/800/500" alt="Celulares" class="cat-img">
+  </div>
+
+  <div class="category-block">
+    <img src="https://picsum.photos/seed/auriculares-cat/800/500" alt="Auriculares" class="cat-img">
+    <div class="cat-info">
+      <h2>Auriculares</h2>
+      <p>Sonido premium con cancelación de ruido activa. Para música, gaming y videollamadas con la mejor calidad de audio.</p>
+      <a href="products.html?categoria=Auriculares" class="btn-ver-mas">Ver Auriculares</a>
+    </div>
+  </div>
+
+  <div class="category-block reverse">
+    <div class="cat-info">
+      <h2>Accesorios</h2>
+      <p>Complementá tu setup con los mejores wearables y tablets del mercado. Smartwatches, tablets y más.</p>
+      <a href="products.html?categoria=Accesorios" class="btn-ver-mas">Ver Accesorios</a>
+    </div>
+    <img src="https://picsum.photos/seed/accesorios-cat/800/500" alt="Accesorios" class="cat-img">
+  </div>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <div class="newsletter-inner">
+      <h2>Recibí las Mejores Ofertas</h2>
+      <p>Suscribite y enterate primero de promociones exclusivas y lanzamientos.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; window.__showToast && window.__showToast('¡Suscripto exitosamente!')">
+        <input type="email" placeholder="tu@email.com" required>
+        <button type="submit">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Seguinos</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">Twitter/X</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="products.html?categoria=Laptops">Laptops</a></li>
+          <li><a href="products.html?categoria=Celulares">Celulares</a></li>
+          <li><a href="products.html?categoria=Auriculares">Auriculares</a></li>
+          <li><a href="products.html?categoria=Accesorios">Accesorios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#">Cómo comprar</a></li>
+          <li><a href="#">Garantía</a></li>
+          <li><a href="#">Envíos</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">info@nextech.ar</a></li>
+          <li><a href="#">Buenos Aires, Argentina</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copyright">© 2025 NexTech. Todos los derechos reservados.</span>
+      <span style="font-family:'Jost',sans-serif;font-size:0.8rem;color:var(--text-light)">Visa · Mastercard · Mercado Pago · Naranja X</span>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div id="cart-overlay"></div>
+  <aside id="cart-sidebar">
+    <div class="cart-header">
+      <h3>Tu carrito</h3>
+      <button id="cart-close" class="cart-close" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span class="cart-total-label">Total estimado</span>
+        <span class="cart-total-amount" id="cart-total">$0</span>
+      </div>
+      <button id="whatsapp-btn" class="btn-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Consultar por WhatsApp
+      </button>
+      <p class="cart-note">Te responderemos a la brevedad</p>
+    </div>
+  </aside>
+
+  <script type="module" src="js/home.js"></script>
+  <script type="module">
+    import { showToast } from './js/utils.js';
+    window.__showToast = showToast;
+  </script>
+
+</body>
+</html>

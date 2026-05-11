@@ -3,7 +3,11 @@
     "allow": [
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\sergi\\\\Desktop\\\\nextech\" -Recurse -Force)",
       "Bash(Select-Object FullName)",
-      "Bash(Sort-Object FullName)"
+      "Bash(Sort-Object FullName)",
+      "Bash(Get-ChildItem C:\\\\Users\\\\sergi\\\\Desktop -Recurse -Include \"*.pdf\",\"*.docx\",\"*.txt\",\"*.md\")",
+      "Bash(New-Item -ItemType File -Path \"C:\\\\Users\\\\sergi\\\\Desktop\\\\nextech\\\\TODO.txt\" -Force)",
+      "Bash(Out-Null)",
+      "PowerShell(Get-ChildItem C:\\\\Users\\\\sergi\\\\Desktop\\\\nextech\\\\backend -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName)"
     ]
   }
 }

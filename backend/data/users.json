@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "nombre": "Administrador NexTech",
+      "email": "admin@nextech.com",
+      "password": "admin123",
+      "rol": "admin",
+      "fecha_registro": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000002",
+      "nombre": "Operador NexTech",
+      "email": "operador@nextech.com",
+      "password": "nextech2024",
+      "rol": "operador",
+      "fecha_registro": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "ee68a00f-f2ed-489f-a2a1-a2bbdc46a4d3",
+      "nombre": "Usuario Prueba",
+      "email": "prueba_test_unico@example.com",
+      "password": "password123",
+      "rol": "usuario",
+      "fecha_registro": "2026-05-11T17:24:24.655266"
+    }
+  ]
+}

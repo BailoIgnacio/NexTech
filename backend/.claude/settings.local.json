@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uvicorn main:app --reload --port 3000)",
+      "PowerShell(pip *)"
+    ]
+  }
+}

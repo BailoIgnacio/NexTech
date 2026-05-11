@@ -1,0 +1,344 @@
+===============================================================================
+ NexTech - TP Testing de Aplicaciones - UADE | Curso 560928
+ Docente: Ariel A. Loffreda | Entrega: 22/06/2026 | Presentacion: 26/06/2026
+================================================================================
+
+CAMBIOS REALIZADOS AL PROYECTO BASE
+-------------------------------------
+- Backend migrado de Node.js a Python + FastAPI (requisito obligatorio del TP)
+- Persistencia via archivos JSON en backend/data/ (sin base de datos)
+- Sistema de autenticacion: registro, login usuario, login admin
+- Usuarios precargados en backend/data/users.json
+- Logs de aplicacion en backend/logs/app.log
+- Tests de ejemplo en backend/tests/ (pytest)
+- Frontend HTML/CSS/JS sin cambios (se sirve desde FastAPI)
+
+COMO CORRER EL PROYECTO (nuevo)
+---------------------------------
+  1. Tener Python 3.10+ instalado
+  2. Abrir terminal en la carpeta backend/:
+       cd backend
+  3. Instalar dependencias:
+        
+  4. Iniciar el servidor:
+       cedcd 
+  5. Abrir en el navegador:
+       http://localhost:3000/
+  6. Documentacion automatica de la API (Swagger):
+       http://localhost:3000/docs
+
+USUARIOS PRECARGADOS
+----------------------
+  Admin:     admin@nextech.com    / admin123
+  Operador:  operador@nextech.com / nextech2024
+
+ENDPOINTS DISPONIBLES
+-----------------------
+  GET    /api/products              Lista productos con filtros y paginacion
+  GET    /api/products/:id          Obtener un producto por ID
+  POST   /api/products              Crear producto
+  PUT    /api/products/:id          Reemplazar producto
+  PATCH  /api/products/:id          Actualizar parcialmente
+  DELETE /api/products/:id          Eliminar producto
+  GET    /api/stats                 Estadisticas generales
+  POST   /api/auth/register         Registrar usuario nuevo
+  POST   /api/auth/login            Login (usuario comun o admin)
+
+================================================================================
+ TAREAS POR ROL Y SPRINT
+================================================================================
+
+------------------------------------------------------------------------
+ ROL: DEVELOPER
+------------------------------------------------------------------------
+
+[ ] SPRINT 1
+    [ ] Instalar Python y dependencias: pip install -r requirements.txt
+    [ ] Correr el servidor y verificar: uvicorn main:app --reload --port 3000
+    [ ] Leer y entender la estructura del backend (main.py, routes/, storage.py)
+    [ ] Correr los tests de ejemplo: cd backend && pytest tests/ -v
+    [ ] Explicar al equipo como funciona la API y donde esta cada cosa
+    [ ] Verificar que el frontend funciona en http://localhost:3000/
+
+[ ] SPRINT 2
+    [ ] Implementar los 2 endpoints nuevos que defina el grupo
+        (sugerencia: POST /api/wishlist y GET /api/wishlist/:user_id)
+    [ ] Agregar tests unitarios para los endpoints nuevos en tests/
+    [ ] Documentar los endpoints nuevos en el documento de endpoints del equipo
+
+[ ] SPRINT 3
+    [ ] Corregir los defectos que reporten los Testers
+    [ ] Verificar que los tests siguen pasando tras cada correccion
+    [ ] Registrar cada correccion con descripcion del cambio (commits claros)
+
+[ ] SPRINT 4
+    [ ] Consolidar el codigo final limpio
+    [ ] Asegurarse que todos los tests pasan: pytest tests/ -v
+    [ ] Tener el servidor corriendo listo para la demo
+
+
+------------------------------------------------------------------------
+ ROL: PROJECT MANAGER
+------------------------------------------------------------------------
+
+[ ] SPRINT 1 - Documento: Requerimientos Refinados y Reglas de Negocio
+    [ ] Listar Requerimientos Funcionales (RF):
+          RF-01: El usuario puede registrarse con nombre, email y contrasena
+          RF-02: El usuario puede iniciar sesion con email y contrasena
+          RF-03: El administrador puede crear/editar/eliminar productos
+          RF-04: El usuario puede ver listado de productos con filtros
+          RF-05: El usuario puede buscar productos por nombre/marca
+          RF-06: El usuario puede ver el detalle de un producto
+          RF-07: El carrito persiste entre sesiones del navegador
+          RF-08: Las estadisticas reflejan el estado real del catalogo
+          (agregar mas segun lo que observe el equipo)
+    [ ] Listar Requerimientos No Funcionales (RNF):
+          RNF-01: El sistema debe responder en menos de 2 segundos
+          RNF-02: Las contrasenas deben tener minimo 8 caracteres
+          RNF-03: Los errores deben retornar codigos HTTP correctos (400/401/404)
+          RNF-04: Los endpoints de escritura deben requerir autenticacion
+    [ ] Documentar Reglas de Negocio (RN):
+          RN-01: El precio de un producto no puede ser 0 ni negativo
+          RN-02: No pueden existir dos usuarios con el mismo email
+          RN-03: Solo el admin puede crear/editar/eliminar productos
+          RN-04: El stock no puede ser negativo
+    [ ] Armar el backlog inicial en Trello/Notion/Excel
+    [ ] Distribuir tareas entre los integrantes
+
+[ ] SPRINT 2 - Documento: Plan de Pruebas
+    [ ] Escribir Plan de Pruebas incluyendo:
+          - Objetivo del testing
+          - Alcance (que se prueba y que NO se prueba)
+          - Estrategia: manual + endpoints + Selenium + JMeter
+          - Recursos humanos y herramientas
+          - Cronograma sprint por sprint
+          - Criterios de entrada y salida
+          - Riesgos identificados
+
+[ ] SPRINT 3
+    [ ] Actualizar backlog con defectos encontrados
+    [ ] Hacer seguimiento del estado de los defectos
+
+[ ] SPRINT 4 - Documento: Retrospectiva del Equipo
+    [ ] Que funciono bien en el proceso
+    [ ] Que fue dificil
+    [ ] Que harian diferente
+    [ ] Aprendizajes principales
+
+[ ] GENERAL - Documento: Matriz de Trazabilidad
+    Formato Excel sugerido:
+    | ID Req | Descripcion req      | ID Caso Prueba    | Estado  | Defecto |
+    |--------|----------------------|-------------------|---------|---------|
+    | RF-01  | Registro de usuario  | CP-001 a CP-005   | PASS    | DEF-001 |
+    | RF-02  | Login de usuario     | CP-006 a CP-009   | FAIL    | DEF-002 |
+    (ir completando a medida que los testers ejecutan)
+
+
+------------------------------------------------------------------------
+ ROL: TESTER 1 (Pruebas Manuales + Selenium)
+------------------------------------------------------------------------
+
+[ ] SPRINT 2 - Documento: Escenarios y Casos de Prueba (ejecucion manual)
+    Disenar casos para TODOS los flujos. Formato sugerido por caso:
+    ------------------------------------------------------------------
+    ID:               CP-XXX
+    Modulo:           Auth / Productos / Carrito / Admin
+    Nombre:           Descripcion corta del caso
+    Precondicion:     Estado del sistema antes de ejecutar
+    Pasos:            1. Hacer X  2. Hacer Y  3. Verificar Z
+    Datos entrada:    email: test@test.com  /  precio: -100
+    Resultado esp.:   El sistema muestra "Error: email duplicado"
+    Resultado obt.:   (completar al ejecutar)
+    Estado:           PASS / FAIL / BLOQUEADO
+    Evidencia:        screenshot_cp001.png
+    ------------------------------------------------------------------
+
+    MODULO AUTH (disena al menos estos):
+    [ ] CP-001: Registro exitoso con datos validos
+    [ ] CP-002: Registro con email ya existente
+    [ ] CP-003: Registro sin nombre (campo vacio)
+    [ ] CP-004: Registro sin email (campo vacio)
+    [ ] CP-005: Registro con contrasena de 1 caracter
+    [ ] CP-006: Login exitoso usuario comun
+    [ ] CP-007: Login exitoso administrador
+    [ ] CP-008: Login con contrasena incorrecta
+    [ ] CP-009: Login con email que no existe
+
+    MODULO PRODUCTOS:
+    [ ] CP-010: Ver listado completo de productos
+    [ ] CP-011: Filtrar por categoria "Laptops"
+    [ ] CP-012: Buscar con texto en MINUSCULAS (ej: "iphone")
+    [ ] CP-013: Buscar con texto en MAYUSCULAS (ej: "iPhone")
+    [ ] CP-014: Ver detalle de un producto
+    [ ] CP-015: Filtrar por rango de precios
+
+    CARRITO:
+    [ ] CP-016: Agregar producto al carrito
+    [ ] CP-017: Aumentar cantidad de un producto en el carrito
+    [ ] CP-018: Eliminar producto del carrito
+    [ ] CP-019: Vaciar el carrito completo
+    [ ] CP-020: Persistencia del carrito al recargar la pagina
+
+    PANEL ADMIN:
+    [ ] CP-021: Crear producto con todos los campos validos
+    [ ] CP-022: Crear producto con precio negativo
+    [ ] CP-023: Crear producto sin nombre
+    [ ] CP-024: Editar un producto existente
+    [ ] CP-025: Eliminar un producto
+    [ ] CP-026: Actualizar parcialmente un producto (toggle destacado)
+
+[ ] SPRINT 2 - Documento: Registro de Defectos
+    Formato Excel sugerido:
+    | ID      | Titulo        | Severidad | Prioridad | Modulo | Pasos para reproducir | Res.Esperado | Res.Obtenido | Estado  | Evidencia      |
+    |---------|---------------|-----------|-----------|--------|-----------------------|--------------|--------------|---------|----------------|
+    | DEF-001 | ...           | Alta      | Alta      | Auth   | 1... 2... 3...        | ...          | ...          | Abierto | screenshot.png |
+    Severidades: Critica / Alta / Media / Baja
+    Estados:     Abierto / En correccion / Corregido / Verificado / Cerrado
+
+[ ] SPRINT 3 - Automatizacion con Selenium (MINIMO 3 flujos)
+    Instalar: pip install selenium webdriver-manager
+    Crear carpeta: selenium/
+    Archivos a crear:
+    [ ] selenium/test_flujo_registro.py     - Flujo: registro de usuario nuevo
+    [ ] selenium/test_flujo_login.py        - Flujo: login exitoso + fallido
+    [ ] selenium/test_flujo_busqueda.py     - Flujo: busqueda de productos
+
+    Cada script debe:
+    - Usar ChromeDriver (webdriver-manager lo descarga automatico)
+    - Tomar screenshot al final del flujo
+    - Imprimir PASS o FAIL con el motivo
+
+    Ejemplo estructura de un test Selenium:
+    --------------------------------------------------
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from webdriver_manager.chrome import ChromeDriverManager
+    from selenium.webdriver.chrome.service import Service
+
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver.get("http://localhost:3000/")
+    # ... acciones ...
+    driver.save_screenshot("evidencia_flujo_1.png")
+    driver.quit()
+    --------------------------------------------------
+
+[ ] SPRINT 4 - Regresion
+    [ ] Re-ejecutar los CP afectados por cada correccion del Developer
+    [ ] Actualizar estado en el registro de defectos
+    [ ] Documentar capturas como evidencia de regresion
+
+
+------------------------------------------------------------------------
+ ROL: TESTER 2 (Pruebas de Endpoints + JMeter)
+------------------------------------------------------------------------
+
+[ ] SPRINT 2 - Pruebas de Endpoints con Postman
+    [ ] Crear coleccion "NexTech API" en Postman con carpetas por modulo
+    [ ] Documentar cada request con: URL, metodo, body, status esperado, resultado
+
+    CARPETA AUTH:
+    [ ] POST /api/auth/register - datos validos -> 201
+    [ ] POST /api/auth/register - email duplicado -> observar respuesta
+    [ ] POST /api/auth/register - sin nombre -> 400 o 422
+    [ ] POST /api/auth/register - sin email -> 400 o 422
+    [ ] POST /api/auth/register - contrasena "a" (1 caracter) -> observar
+    [ ] POST /api/auth/login - admin correcto -> 200 + rol admin
+    [ ] POST /api/auth/login - password incorrecta -> 401
+    [ ] POST /api/auth/login - email inexistente -> 401
+
+    CARPETA PRODUCTOS:
+    [ ] GET /api/products -> 200 + lista paginada
+    [ ] GET /api/products?categoria=Laptops -> solo laptops
+    [ ] GET /api/products?search=iphone -> observar (minusculas)
+    [ ] GET /api/products?search=iPhone -> observar (mayusculas)
+    [ ] GET /api/products?precio_min=500000 -> solo productos caros
+    [ ] GET /api/products?sort=precio&order=asc -> orden ascendente
+    [ ] GET /api/products?page=1&limit=4 -> paginacion correcta
+    [ ] GET /api/products/{id_valido} -> 200 + producto
+    [ ] GET /api/products/id-inexistente -> 404
+    [ ] POST /api/products {nombre:"Test", precio:100} -> 201
+    [ ] POST /api/products {precio:100} -> 422 (sin nombre)
+    [ ] POST /api/products {nombre:"Test", precio:-50} -> observar respuesta
+    [ ] PATCH /api/products/{id} {precio:-100} -> observar respuesta
+    [ ] PATCH /api/products/{id} {destacado:true} -> 200
+    [ ] PUT /api/products/{id} (producto completo) -> 200
+    [ ] DELETE /api/products/{id} sin token -> observar respuesta
+    [ ] DELETE /api/products/{id} con id inexistente -> 404
+
+    CARPETA STATS:
+    [ ] GET /api/stats -> verificar que los numeros coinciden con los productos reales
+        Contar manualmente: total, destacados, novedades, sin stock
+        Comparar con lo que devuelve el endpoint
+
+[ ] SPRINT 3 - Pruebas no funcionales con JMeter (MINIMO 2 escenarios)
+    Descargar: https://jmeter.apache.org/download_jmeter.cgi
+    Abrir: bin/jmeter.bat (Windows)
+
+    ESCENARIO 1 - Carga en listado de productos:
+    [ ] Nuevo Test Plan -> Thread Group
+        Users: 50 | Ramp-up: 10 segundos | Loop: 1
+    [ ] HTTP Request: GET http://localhost:3000/api/products
+    [ ] Agregar listeners: View Results Tree, Summary Report, Response Time Graph
+    [ ] Ejecutar y guardar capturas de pantalla de los reportes
+    [ ] Anotar: tiempo promedio de respuesta, % de errores, throughput (req/seg)
+
+    ESCENARIO 2 - Carga en login:
+    [ ] Thread Group: 30 usuarios | Ramp-up: 5 segundos | Loop: 1
+    [ ] HTTP Request: POST http://localhost:3000/api/auth/login
+        Content-Type: application/json
+        Body: {"email":"admin@nextech.com","password":"admin123"}
+    [ ] Agregar listeners: Summary Report
+    [ ] Ejecutar y documentar resultados
+
+    Guardar los archivos .jmx y todas las capturas de pantalla
+
+[ ] SPRINT 4 - Analisis resultados JMeter
+    [ ] Documentar que observaron en los resultados
+    [ ] Identificar si hay cuellos de botella o errores bajo carga
+    [ ] Escribir conclusion sobre el rendimiento del sistema
+    [ ] Comparar con el RNF-01 (respuesta < 2 segundos)
+
+
+================================================================================
+ ENTREGABLES FINALES - CHECKLIST (Entrega: 22/06/2026)
+================================================================================
+
+DOCUMENTOS (crear en /docs o Google Drive del grupo):
+[ ] 1. requerimientos_refinados.docx     (PM)
+[ ] 2. plan_de_pruebas.docx              (PM)
+[ ] 3. matriz_trazabilidad.xlsx          (PM + Testers)
+[ ] 4. casos_de_prueba.xlsx              (Tester 1)
+[ ] 5. registro_de_defectos.xlsx         (Tester 1)
+[ ] 6. evidencia_postman.pdf             (Tester 2 - exportar coleccion + screenshots)
+[ ] 7. selenium/ (scripts .py + screenshots) (Tester 1)
+[ ] 8. jmeter/ (archivos .jmx + reportes)    (Tester 2)
+[ ] 9. retrospectiva.docx               (PM)
+
+CODIGO:
+[ ] 10. Repo GitHub con el codigo final
+[ ] 11. README actualizado con instrucciones para correr el proyecto
+
+PRESENTACION (para el 26/06):
+[ ] 12. Slides con:
+        - Descripcion del sistema y alcance trabajado
+        - Principales requerimientos y reglas de negocio
+        - Estrategia de testing aplicada
+        - Defectos relevantes encontrados (con evidencia)
+        - Evidencia de pruebas manuales
+        - Evidencia de pruebas de endpoints
+        - Evidencia de automatizacion Selenium
+        - Evidencia de JMeter
+        - Conclusiones sobre la calidad del producto
+        - Retrospectiva del equipo
+
+
+================================================================================
+ SPRINTS - FECHAS CLAVE
+================================================================================
+
+Sprint 1:  hasta 22/05  - Setup, comprension del sistema, requerimientos, backlog
+Sprint 2:  hasta 05/06  - Casos de prueba, pruebas manuales, endpoints nuevos
+Sprint 3:  hasta 12/06  - Pruebas endpoints Postman, Selenium, regresion
+Sprint 4:  hasta 19/06  - JMeter, consolidacion, preparacion presentacion
+Entrega:   22/06/2026
+Defensa:   26/06/2026

@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(uvicorn main:app --reload --port 3000)",
-      "PowerShell(pip *)"
+      "PowerShell(pip *)",
+      "Bash(New-Item -ItemType Directory -Path \"C:\\\\Users\\\\sergi\\\\Desktop\\\\nextech\\\\docs\" -Force)",
+      "Bash(Out-Null)",
+      "Bash(Write-Output \"ok\")"
     ]
   }
 }

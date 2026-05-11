@@ -1,3 +1,6 @@
 2026-05-11 14:32:55,717 [INFO] nextech - NexTech API iniciada correctamente
 2026-05-11 14:33:43,674 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
 2026-05-11 14:33:43,674 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 14:54:26,590 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-11 14:54:31,743 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 14:54:31,744 [INFO] nextech.products - GET /products - total=6 page=1 limit=4

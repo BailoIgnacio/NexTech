@@ -1,4 +1,4 @@
-===============================================================================
+================================================================================
  NexTech - TP Testing de Aplicaciones - UADE | Curso 560928
  Docente: Ariel A. Loffreda | Entrega: 22/06/2026 | Presentacion: 26/06/2026
 ================================================================================
@@ -19,9 +19,9 @@ COMO CORRER EL PROYECTO (nuevo)
   2. Abrir terminal en la carpeta backend/:
        cd backend
   3. Instalar dependencias:
-        
+       pip install -r requirements.txt
   4. Iniciar el servidor:
-       cedcd 
+        python -m uvicorn main:app --reload --port 3000 
   5. Abrir en el navegador:
        http://localhost:3000/
   6. Documentacion automatica de la API (Swagger):

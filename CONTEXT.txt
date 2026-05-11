@@ -1,0 +1,662 @@
+================================================================================
+ NEXTECH - ARCHIVO DE CONTEXTO COMPLETO PARA TRABAJO CON IA
+ Generado: 2026-05-11
+================================================================================
+
+Este archivo describe en detalle el sistema NexTech para que cualquier IA
+pueda ponerse en contexto completo y trabajar con el proyecto sin ambiguedades.
+
+================================================================================
+ 1. QUE ES NEXTECH
+================================================================================
+
+NexTech es un e-commerce de productos de tecnologia premium (laptops, celulares,
+auriculares y accesorios). Es un TRABAJO PRACTICO UNIVERSITARIO de la materia
+"Testing de Aplicaciones" en la UADE (Universidad Argentina de la Empresa),
+Curso 560928, a cargo del docente Ariel A. Loffreda.
+
+El proyecto existe para que el equipo practique tecnicas de testing de software:
+pruebas manuales, pruebas de API con Postman, automatizacion con Selenium y
+pruebas de performance con JMeter. Por eso, el sistema tiene BUGS INTENCIONALES
+que los testers deben encontrar (detallados en la seccion 10).
+
+Fechas clave:
+  - Entrega: 22/06/2026
+  - Defensa/Presentacion: 26/06/2026
+
+Sprints:
+  Sprint 1: hasta 22/05 - Setup, comprension del sistema, requerimientos
+  Sprint 2: hasta 05/06 - Casos de prueba, pruebas manuales, endpoints nuevos
+  Sprint 3: hasta 12/06 - Postman, Selenium, regresion
+  Sprint 4: hasta 19/06 - JMeter, consolidacion, presentacion
+
+Roles del equipo:
+  - Developer: implementa codigo, corrige bugs, agrega endpoints nuevos
+  - Project Manager: requerimientos, plan de pruebas, trazabilidad, retrospectiva
+  - Tester 1: pruebas manuales + Selenium
+  - Tester 2: pruebas de endpoints (Postman) + JMeter
+
+
+================================================================================
+ 2. STACK TECNOLOGICO
+================================================================================
+
+BACKEND:
+  - Lenguaje: Python 3.10+
+  - Framework: FastAPI
+  - Servidor ASGI: Uvicorn
+  - Persistencia: Archivos JSON (sin base de datos)
+  - Testing: pytest + FastAPI TestClient (httpx)
+  - Logging: modulo logging de Python, escribe en backend/logs/app.log
+
+FRONTEND:
+  - HTML5 puro, CSS3 puro, JavaScript ES6+ (sin frameworks, sin build tools)
+  - Modulos JS nativos (import/export)
+  - Fuentes: Google Fonts (Cormorant Garamond + Jost)
+  - El frontend es servido estaticamente por FastAPI (StaticFiles)
+
+NOTA HISTORICA: El package.json en la raiz es un remanente del backend original
+en Node.js/Express que fue migrado a Python+FastAPI. El package.json ya NO se usa
+para correr el proyecto. El unico backend activo es el de Python.
+
+
+================================================================================
+ 3. ESTRUCTURA DE CARPETAS
+================================================================================
+
+nextech/                         <- Raiz del proyecto
+  README.md                      <- Instrucciones generales y tareas por rol
+  TODO.txt                       <- Mismo contenido que README (copia)
+  package.json                   <- Remanente del backend Node.js (NO USAR)
+  CONTEXT.txt                    <- Este archivo
+  docs/                          <- Carpeta para documentos del TP (vacia al inicio)
+
+  backend/                       <- TODO el backend Python esta aqui
+    main.py                      <- Entry point de FastAPI, configuracion, logging, montaje de rutas
+    storage.py                   <- Capa de persistencia: lee/escribe archivos JSON
+    requirements.txt             <- fastapi, uvicorn[standard], httpx, pytest
+    routes/
+      __init__.py
+      products.py                <- CRUD completo de productos
+      auth.py                    <- Registro y login de usuarios
+      stats.py                   <- Estadisticas del catalogo
+    data/
+      products.json              <- Base de datos de productos (16 productos precargados)
+      users.json                 <- Base de datos de usuarios (2 precargados + los registrados)
+    tests/
+      __init__.py
+      test_products.py           <- Tests de la API de productos (pytest)
+      test_auth.py               <- Tests de la API de auth (pytest)
+    logs/
+      app.log                    <- Log de la aplicacion (se genera al correr)
+    .claude/
+      settings.local.json        <- Configuracion de Claude Code para el proyecto
+
+  public/                        <- Frontend estatico (servido por FastAPI en /)
+    index.html                   <- Pagina principal (home)
+    products.html                <- Listado de productos con filtros
+    product.html                 <- Detalle de un producto individual
+    admin/
+      index.html                 <- Panel de administracion (CRUD de productos)
+    css/
+      styles.css                 <- Estilos globales (design system propio)
+    js/
+      api.js                     <- Cliente HTTP para consumir la API REST
+      cart.js                    <- Logica del carrito (localStorage)
+      home.js                    <- Logica de la pagina de inicio
+      products-list.js           <- Logica del listado de productos con filtros
+      product-detail.js          <- Logica de la pagina de detalle de producto
+      admin.js                   <- Logica del panel de administracion
+      utils.js                   <- Utilidades compartidas (formatPrice, showToast)
+
+
+================================================================================
+ 4. COMO CORRER EL PROYECTO
+================================================================================
+
+Requisitos: Python 3.10 o superior instalado.
+
+Pasos:
+  1. Abrir terminal en la carpeta backend/:
+       cd backend
+
+  2. Instalar dependencias (solo la primera vez):
+       pip install -r requirements.txt
+
+  3. Iniciar el servidor:
+       python -m uvicorn main:app --reload --port 3000
+
+  4. Abrir en el navegador:
+       http://localhost:3000/           <- Tienda (frontend)
+       http://localhost:3000/admin/     <- Panel de administracion
+       http://localhost:3000/docs       <- Swagger UI (documentacion interactiva de la API)
+       http://localhost:3000/redoc      <- ReDoc (alternativa a Swagger)
+
+Importante: el servidor debe correr desde dentro de la carpeta backend/ porque
+storage.py construye rutas relativas al __file__ para encontrar backend/data/.
+
+
+================================================================================
+ 5. MODELO DE DATOS
+================================================================================
+
+--- PRODUCTO (backend/data/products.json) ---
+
+Cada producto tiene estos campos:
+  id             : string (UUID v4)
+  nombre         : string (requerido)
+  descripcion    : string
+  precio         : float (debe ser > 0 segun validacion en POST y PUT)
+  stock          : int (>= 0)
+  categoria      : string ("Laptops" | "Celulares" | "Auriculares" | "Accesorios")
+  color          : string ("Negro" | "Blanco" | "Gris" | "Plateado")
+  marca          : string
+  imagen_url     : string (URL a imagen)
+  imagenes_extra : lista de strings (URLs de imagenes adicionales)
+  destacado      : boolean (aparece en seccion "Destacados" del home)
+  novedad        : boolean (aparece en seccion "Novedades" del home)
+  con_stock      : boolean (campo manual, NO se calcula automaticamente desde stock)
+  fecha_creacion : string ISO 8601
+  fecha_actualizacion : string ISO 8601
+
+Productos precargados (16 en total):
+  - MacBook Air M2      (Laptops,     Apple,   $720000, stock 8,  destacado=true,  novedad=true)
+  - Dell XPS 15         (Laptops,     Dell,    $680000, stock 5,  destacado=false, novedad=false)
+  - Lenovo ThinkPad X1  (Laptops,     Lenovo,  $590000, stock 0,  destacado=false, novedad=false)
+  - Samsung Galaxy Book3(Laptops,     Samsung, $550000, stock 6,  destacado=false, novedad=true)
+  - iPhone 15 Pro       (Celulares,   Apple,   $800000, stock 10, destacado=true,  novedad=true)
+  - Samsung Galaxy S24  (Celulares,   Samsung, $620000, stock 12, destacado=false, novedad=true)
+  - Xiaomi 14 Pro       (Celulares,   Xiaomi,  $480000, stock 7,  destacado=false, novedad=false)
+  - Google Pixel 8      (Celulares,   Xiaomi,  $420000, stock 0,  destacado=false, novedad=false)  <- BUG: marca="Xiaomi" en vez de "Google"
+  - Sony WH-1000XM5     (Auriculares, Sony,    $280000, stock 15, destacado=true,  novedad=false)
+  - AirPods Pro 2da Gen (Auriculares, Apple,   $320000, stock 20, destacado=false, novedad=false)
+  - JBL Tune 770NC      (Auriculares, JBL,     $150000, stock 18, destacado=false, novedad=true)
+  - Samsung Galaxy Buds2(Auriculares, Samsung, $210000, stock 9,  destacado=false, novedad=false)
+  - Apple Watch Series 9(Accesorios,  Apple,   $380000, stock 11, destacado=true,  novedad=false)
+  - Samsung Galaxy Watch6(Accesorios, Samsung, $290000, stock 14, destacado=false, novedad=true)
+  - iPad Pro M2         (Accesorios,  Apple,   $750000, stock 4,  destacado=false, novedad=false)
+  - Samsung Galaxy Tab S9(Accesorios, Samsung, $520000, stock 6,  destacado=false, novedad=false)
+
+--- USUARIO (backend/data/users.json) ---
+
+Cada usuario tiene:
+  id             : string (UUID v4)
+  nombre         : string
+  email          : string
+  password       : string (TEXTO PLANO, sin hash - esto es un bug de seguridad)
+  rol            : string ("admin" | "operador" | "usuario")
+  fecha_registro : string ISO 8601
+
+Usuarios precargados:
+  - Admin:    email="admin@nextech.com",    password="admin123",    rol="admin"
+  - Operador: email="operador@nextech.com", password="nextech2024", rol="operador"
+
+Nota: el rol "operador" existe en los datos pero el sistema no tiene logica de
+autorizacion por rol implementada. Solo existen "admin" y "usuario" en la practica.
+
+
+================================================================================
+ 6. API REST - ENDPOINTS DETALLADOS
+================================================================================
+
+URL base: http://localhost:3000/api
+Formato: JSON
+Autenticacion: NINGUNA (los endpoints de escritura NO requieren token en la
+implementacion actual - esto es un bug intencional para testing)
+
+
+--- PRODUCTOS ---
+
+GET /api/products
+  Descripcion: Lista todos los productos con soporte de filtros y paginacion.
+  Query params opcionales:
+    categoria   : string exacto ("Laptops" | "Celulares" | "Auriculares" | "Accesorios")
+    color       : string exacto ("Negro" | "Blanco" | "Gris" | "Plateado")
+    destacado   : "true" | "false"
+    novedad     : "true" | "false"
+    search      : string (busca en nombre, descripcion y marca - CASE SENSITIVE, bug intencional)
+    precio_min  : float
+    precio_max  : float
+    sort        : "nombre" | "precio" | "fecha"
+    order       : "asc" | "desc" (default: "asc")
+    page        : int (default: 1)
+    limit       : int (default: 12)
+  Respuesta 200:
+    {
+      "data": [...],      // lista de productos de la pagina actual
+      "total": 16,        // total de productos tras aplicar filtros
+      "page": 1,
+      "totalPages": 2,
+      "limit": 12
+    }
+
+GET /api/products/{id}
+  Descripcion: Obtiene un producto por su UUID.
+  Respuesta 200: objeto producto completo
+  Respuesta 404: {"detail": "Producto no encontrado"}
+
+POST /api/products
+  Descripcion: Crea un producto nuevo.
+  Body requerido (JSON):
+    nombre  : string (requerido, no puede estar vacio)
+    precio  : float  (requerido, debe ser > 0)
+    + todos los demas campos de ProductCreate son opcionales con defaults
+  Respuesta 201: objeto producto creado (con id y fechas generados)
+  Respuesta 400: {"detail": "El campo nombre es requerido"} o {"detail": "El campo precio debe ser mayor a 0"}
+  Respuesta 422: error de validacion de Pydantic (campos faltantes o tipos incorrectos)
+  NOTA: No requiere autenticacion (bug intencional)
+
+PUT /api/products/{id}
+  Descripcion: Reemplaza un producto completo.
+  Body: mismo schema que POST /api/products (ProductCreate completo)
+  Aplica las mismas validaciones de nombre y precio.
+  Respuesta 200: objeto producto actualizado
+  Respuesta 404: si el id no existe
+
+PATCH /api/products/{id}
+  Descripcion: Actualizacion parcial de un producto. Solo envia los campos a cambiar.
+  Body: cualquier combinacion de campos de ProductPatch (todos opcionales)
+  IMPORTANTE - BUG INTENCIONAL: PATCH NO valida que precio sea > 0.
+    Permite enviar precio=-100 y lo acepta (a diferencia de POST y PUT).
+  Respuesta 200: objeto producto actualizado
+  Respuesta 404: si el id no existe
+
+DELETE /api/products/{id}
+  Descripcion: Elimina un producto.
+  Respuesta 204: sin cuerpo (exito)
+  Respuesta 404: {"detail": "Producto no encontrado"}
+  NOTA: No requiere autenticacion (bug intencional)
+
+
+--- AUTENTICACION ---
+
+POST /api/auth/register
+  Descripcion: Registra un nuevo usuario.
+  Body (JSON):
+    nombre   : string (requerido, no puede estar vacio)
+    email    : string (requerido, no puede estar vacio)
+    password : string (requerido)
+  Respuesta 201:
+    {
+      "id": "...",
+      "nombre": "...",
+      "email": "...",
+      "rol": "usuario"
+    }
+  Respuesta 400: si nombre, email o password estan vacios
+  IMPORTANTE - BUG INTENCIONAL: NO verifica si el email ya existe.
+    Permite registrar dos usuarios con el mismo email.
+  IMPORTANTE - BUG SEGURIDAD: La password se guarda en texto plano en users.json.
+
+POST /api/auth/login
+  Descripcion: Autentica un usuario existente.
+  Body (JSON):
+    email    : string
+    password : string
+  Respuesta 200:
+    {
+      "mensaje": "Login exitoso",
+      "usuario": {
+        "id": "...",
+        "nombre": "...",
+        "email": "...",
+        "rol": "admin" | "operador" | "usuario"
+      }
+    }
+  Respuesta 401: {"detail": "Credenciales incorrectas"}
+  NOTA: La respuesta NO devuelve ningun token JWT ni session token.
+    El frontend no implementa autenticacion real (no hay sesion persistente entre
+    paginas). El login solo valida credenciales y devuelve datos del usuario.
+
+
+--- ESTADISTICAS ---
+
+GET /api/stats
+  Descripcion: Devuelve estadisticas del catalogo de productos.
+  Respuesta 200:
+    {
+      "total_productos": 16,
+      "total_destacados": 4,
+      "total_novedades": 6,
+      "total_sin_stock": 2
+    }
+  IMPORTANTE - BUG/INCONSISTENCIA: total_sin_stock se calcula contando productos
+    donde stock == 0. Sin embargo, existe el campo con_stock que es un boolean
+    separado que puede estar desincronizado. El endpoint ignora con_stock al
+    calcular sin_stock y usa unicamente el campo numerico stock.
+
+
+================================================================================
+ 7. FRONTEND - PAGINAS Y FUNCIONALIDADES
+================================================================================
+
+--- public/index.html (HOME) ---
+  - Header con navegacion: Inicio, Productos, Laptops, Celulares
+  - Barra de busqueda (redirige a products.html?search=...)
+  - Boton de carrito con badge de cantidad
+  - Sub-header con "Envios a todo el pais | Aceptamos todos los medios de pago"
+  - Seccion Hero: banner con imagen
+  - Seccion Destacados: productos con destacado=true, con carrusel (flechas anterior/siguiente)
+  - Seccion Novedades: productos con novedad=true
+  - Bloques de categoria: Laptops, Celulares, Auriculares, Accesorios (con imagen y link)
+  - Newsletter: formulario de suscripcion (solo visual, no guarda nada)
+  - Footer: redes sociales, categorias, informacion, contacto
+  - Cart sidebar: panel lateral deslizante con productos del carrito
+  - Boton WhatsApp: genera mensaje pre-armado con los productos del carrito
+  - Script cargado: js/home.js (modulo ES6)
+
+--- public/products.html (LISTADO DE PRODUCTOS) ---
+  - Sidebar de filtros: categoria, color, precio min/max, destacado, novedad
+  - Barra de busqueda adicional
+  - Selector de ordenamiento: nombre asc/desc, precio asc/desc, mas reciente
+  - Grid de tarjetas de producto (paginacion incluida)
+  - Cada tarjeta: imagen, nombre, marca, precio, badge de novedad/sin stock, boton "Ver"
+  - Parametros de URL: categoria, color, search, destacado, novedad, precio_min, precio_max, sort, order, page
+  - Script cargado: js/products-list.js
+
+--- public/product.html (DETALLE DE PRODUCTO) ---
+  - Carga el producto segun ?id=UUID en la URL
+  - Galeria de imagenes (imagen principal + miniaturas de imagenes_extra)
+  - Informacion: nombre, marca, precio, descripcion, color, stock
+  - Boton "Agregar al carrito"
+  - Badges: Novedad, Sin Stock segun campos del producto
+  - Script cargado: js/product-detail.js
+
+--- public/admin/index.html (PANEL ADMIN) ---
+  - Requiere acceso a /admin/ (NO tiene proteccion de login - bug intencional)
+  - Stats cards: Total Productos, Destacados, Novedades, Sin Stock (carga desde /api/stats)
+  - Tabla de productos: imagen, nombre, categoria, precio, stock, destacado, acciones
+  - Busqueda en tabla (lado cliente, no llama a la API)
+  - Boton "Nuevo Producto": abre modal de formulario
+  - Por cada producto en la tabla:
+      - Boton Editar: abre modal pre-llenado con datos del producto
+      - Boton Eliminar: confirma y llama DELETE /api/products/{id}
+      - Toggle Destacado: llama PATCH /api/products/{id} con {destacado: !actual}
+  - Modal de producto: formulario con todos los campos de ProductCreate
+  - Script cargado: js/admin.js
+
+
+================================================================================
+ 8. MODULOS JAVASCRIPT
+================================================================================
+
+--- public/js/api.js ---
+  Objeto `api` con metodos para consumir la API REST.
+  Usa fetch() nativo con BASE_URL = '/api'.
+  Exporta: api (default export)
+  Metodos:
+    api.products.getAll(params)          -> GET /api/products
+    api.products.getById(id)             -> GET /api/products/{id}
+    api.products.create(data)            -> POST /api/products
+    api.products.update(id, data)        -> PUT /api/products/{id}
+    api.products.partialUpdate(id, data) -> PATCH /api/products/{id}
+    api.products.delete(id)              -> DELETE /api/products/{id}
+    api.stats.get()                      -> GET /api/stats
+
+--- public/js/cart.js ---
+  Carrito de compras. Persiste en localStorage con clave 'nextech_cart'.
+  No tiene estado en el servidor (100% lado cliente).
+  Cada item del carrito tiene: _key, id, nombre, precio, imagen_url, cantidad, variante, color
+  La _key es product.id + '_' + variante (permite tener el mismo producto con distintas variantes).
+  Exporta: initCart, addItem, removeItem, updateQty, clearCart, getTotal, getCount, getItems, openCart, closeCart
+  Funcionalidad WhatsApp: buildWhatsAppURL() genera enlace wa.me con el resumen del carrito.
+  El numero de WhatsApp se configura en window.WHATSAPP_CONFIG.number (definido en index.html).
+
+--- public/js/utils.js ---
+  Exporta:
+    formatPrice(number) -> string formateado como "$720.000" (pesos argentinos)
+    showToast(message, type) -> muestra notificacion temporal en pantalla
+
+--- public/js/home.js ---
+  Carga productos destacados y novedades al inicio.
+  Inicializa el carrusel de destacados.
+  Inicializa el carrito.
+
+--- public/js/products-list.js ---
+  Lee query params de la URL para inicializar filtros.
+  Llama a api.products.getAll() con los filtros activos.
+  Renderiza la grilla de productos y la paginacion.
+  Los filtros del sidebar actualizan la URL y recargan los productos.
+
+--- public/js/product-detail.js ---
+  Lee ?id= de la URL y llama api.products.getById(id).
+  Renderiza galeria, informacion del producto.
+  Maneja el boton "Agregar al carrito".
+
+--- public/js/admin.js ---
+  Carga estadisticas y tabla de productos al inicio.
+  CRUD completo via la API:
+    - Crear: POST /api/products
+    - Editar: PUT /api/products/{id}
+    - Eliminar: DELETE /api/products/{id}
+    - Toggle destacado: PATCH /api/products/{id}
+  Busqueda en tabla: filtra filas del DOM (sin llamar a la API).
+  Expone en window: openProductModal, closeProductModal, saveProduct
+
+
+================================================================================
+ 9. BACKEND - LOGICA INTERNA
+================================================================================
+
+--- backend/main.py ---
+  - Crea la instancia FastAPI con titulo "NexTech API" version "1.0.0"
+  - Middleware CORS: permite todos los origenes (allow_origins=["*"])
+  - Registra los 3 routers con prefijo /api
+  - Monta el frontend estatico en la raiz "/" con html=True (sirve index.html por defecto)
+  - Logging: escribe en backend/logs/app.log Y en consola simultaneamente
+
+--- backend/storage.py ---
+  - read_json(filename) : lee backend/data/{filename} y retorna el dict Python
+  - write_json(filename, data) : serializa y escribe con indent=2, ensure_ascii=False
+  - No tiene cache ni concurrencia. Cada request lee el archivo completo.
+
+--- backend/routes/products.py ---
+  - Pydantic models: ProductCreate (campos requeridos: nombre, precio) y ProductPatch (todo opcional)
+  - Todos los filtros de GET /products se aplican en Python sobre la lista leida del JSON
+  - IDs generados con uuid.uuid4()
+  - Fechas generadas con datetime.utcnow().isoformat()
+
+--- backend/routes/auth.py ---
+  - Pydantic models: RegisterRequest, LoginRequest
+  - No usa JWT, no tiene middleware de autorizacion
+  - Login: busqueda por coincidencia exacta de email Y password en texto plano
+  - La respuesta de login NO incluye el campo password
+
+--- backend/routes/stats.py ---
+  - Lee products.json, calcula conteos en memoria y los devuelve
+
+
+================================================================================
+ 10. BUGS CONOCIDOS E INTENCIONALES
+================================================================================
+
+Estos bugs son INTENCIONALES para que los testers los encuentren como parte del TP.
+El Developer debera corregirlos cuando los Testers los reporten como defectos.
+
+BUG-01 (Auth - Registro de email duplicado)
+  Archivo: backend/routes/auth.py, funcion register()
+  El comentario en el codigo dice: "Registra el usuario sin verificar si el email ya existe"
+  Efecto: POST /api/auth/register con email ya existente retorna 201 en lugar de 409.
+  Resultado esperado correcto: deberia retornar 409 Conflict con mensaje de error.
+
+BUG-02 (Productos - Busqueda case-sensitive)
+  Archivo: backend/routes/products.py, funcion get_products()
+  El comentario dice: "La busqueda es sensible a mayusculas/minusculas"
+  Efecto: GET /api/products?search=iphone no encuentra "iPhone 15 Pro".
+          GET /api/products?search=iPhone si lo encuentra.
+  Resultado esperado correcto: la busqueda deberia ser case-insensitive.
+
+BUG-03 (Productos - PATCH no valida precio negativo)
+  Archivo: backend/routes/products.py, funcion partial_update_product()
+  El comentario dice: "sin validar precio en PATCH"
+  Efecto: PATCH /api/products/{id} con {"precio": -100} retorna 200 y guarda el precio negativo.
+          POST y PUT si validan que precio > 0 y retornan 400.
+  Resultado esperado correcto: PATCH tambien deberia rechazar precios <= 0.
+
+BUG-04 (Stats - Inconsistencia con_stock vs stock)
+  Archivo: backend/routes/stats.py
+  total_sin_stock se calcula con: sum(1 for p in products if p.get("stock", 0) == 0)
+  Pero existe el campo booleano con_stock que puede estar desincronizado con el stock numerico.
+  Efecto: un producto con stock=5 y con_stock=False no seria contado como sin stock.
+          Un producto con stock=0 y con_stock=True si seria contado como sin stock.
+  El campo con_stock es un campo manual que no se actualiza automaticamente.
+
+BUG-05 (Datos - Marca incorrecta en Google Pixel 8)
+  Archivo: backend/data/products.json
+  El Google Pixel 8 tiene marca="Xiaomi" en lugar de "Google".
+  Efecto: buscar ?search=Google no encuentra el Pixel 8. Buscar ?marca=Xiaomi lo incluye.
+
+BUG-06 (Autorizacion ausente en endpoints de escritura)
+  Archivos: backend/routes/products.py
+  Los endpoints POST, PUT, PATCH y DELETE de /api/products no requieren autenticacion.
+  Cualquier persona puede crear, modificar o eliminar productos sin estar logueada.
+  El panel admin tampoco tiene proteccion de login (accesible en /admin/ directamente).
+  Resultado esperado correcto: deberian requerir un token y que el rol sea "admin".
+
+BUG-07 (Seguridad - Passwords en texto plano)
+  Archivo: backend/data/users.json y backend/routes/auth.py
+  Las passwords se almacenan y comparan en texto plano, sin hash.
+  Resultado esperado correcto: deberian hashearse con bcrypt u similar.
+
+BUG-08 (Auth - Sin validacion de longitud de password)
+  Archivo: backend/routes/auth.py, funcion register()
+  El RNF-02 establece que las contrasenas deben tener minimo 8 caracteres.
+  Pero la API acepta passwords de cualquier longitud (incluso 1 caracter) sin error.
+  Resultado esperado correcto: deberia retornar 400 si la password tiene menos de 8 caracteres.
+
+
+================================================================================
+ 11. TESTS AUTOMATIZADOS EXISTENTES
+================================================================================
+
+Ubicacion: backend/tests/
+Ejecutar: cd backend && pytest tests/ -v
+
+test_products.py (8 tests):
+  - test_get_products_returns_paginated_list: verifica estructura de respuesta
+  - test_get_products_filter_by_categoria: filtra por "Laptops"
+  - test_get_products_filter_by_destacado: filtra por destacado=true
+  - test_get_products_pagination: paginacion con limit=4
+  - test_get_product_by_id_success: GET por ID conocido (MacBook Air M2)
+  - test_get_product_not_found: ID inexistente retorna 404
+  - test_create_product_missing_nombre: sin nombre retorna 422
+  - test_create_product_invalid_precio: precio negativo retorna 400
+  - test_create_product_success: crea producto y lo limpia (DELETE al final)
+  - test_delete_product_not_found: ID inexistente retorna 404
+
+test_auth.py (8 tests):
+  - test_login_admin_success: login correcto con admin
+  - test_login_wrong_password: password incorrecta retorna 401
+  - test_login_nonexistent_user: email inexistente retorna 401
+  - test_login_operador_success: login con operador
+  - test_register_missing_nombre: nombre vacio retorna 400
+  - test_register_missing_email: email vacio retorna 400
+  - test_register_success: registro exitoso retorna 201 con rol "usuario" y sin campo password
+  - test_login_response_no_expone_password: verifica que la respuesta de login no incluye password
+
+NOTA: test_register_success usa email "prueba_test_unico@example.com". Si se corre el test
+y el email ya existe (por BUG-01), el test igual pasara porque el endpoint devuelve 201
+siempre. Esto puede causar duplicados en users.json.
+
+
+================================================================================
+ 12. REQUERIMIENTOS DEL SISTEMA (segun README)
+================================================================================
+
+Requerimientos Funcionales:
+  RF-01: El usuario puede registrarse con nombre, email y contrasena
+  RF-02: El usuario puede iniciar sesion con email y contrasena
+  RF-03: El administrador puede crear/editar/eliminar productos
+  RF-04: El usuario puede ver listado de productos con filtros
+  RF-05: El usuario puede buscar productos por nombre/marca
+  RF-06: El usuario puede ver el detalle de un producto
+  RF-07: El carrito persiste entre sesiones del navegador (localStorage)
+  RF-08: Las estadisticas reflejan el estado real del catalogo
+
+Requerimientos No Funcionales:
+  RNF-01: El sistema debe responder en menos de 2 segundos
+  RNF-02: Las contrasenas deben tener minimo 8 caracteres (NO implementado - BUG-08)
+  RNF-03: Los errores deben retornar codigos HTTP correctos (400/401/404)
+  RNF-04: Los endpoints de escritura deben requerir autenticacion (NO implementado - BUG-06)
+
+Reglas de Negocio:
+  RN-01: El precio de un producto no puede ser 0 ni negativo (implementado en POST y PUT, no en PATCH - BUG-03)
+  RN-02: No pueden existir dos usuarios con el mismo email (NO implementado - BUG-01)
+  RN-03: Solo el admin puede crear/editar/eliminar productos (NO implementado - BUG-06)
+  RN-04: El stock no puede ser negativo (hay validacion min=0 en el frontend HTML, pero no en la API)
+
+
+================================================================================
+ 13. ENDPOINTS NUEVOS A IMPLEMENTAR (Sprint 2 - Developer)
+================================================================================
+
+El Developer debe implementar 2 endpoints nuevos. La sugerencia del README es:
+  POST /api/wishlist          -> Agregar producto a lista de deseos de un usuario
+  GET  /api/wishlist/:user_id -> Obtener la lista de deseos de un usuario
+
+Estos endpoints no existen aun. El Developer debe:
+  1. Crear backend/routes/wishlist.py con la logica
+  2. Crear backend/data/wishlist.json para persistencia
+  3. Registrar el router en backend/main.py
+  4. Agregar tests en backend/tests/test_wishlist.py
+  5. Documentar los endpoints
+
+
+================================================================================
+ 14. CONFIGURACION DE LOGGING
+================================================================================
+
+El sistema registra logs en:
+  - Consola (stdout)
+  - backend/logs/app.log
+
+Formato: "TIMESTAMP [LEVEL] logger_name - mensaje"
+Ejemplo: "2026-05-11 10:30:00,123 [INFO] nextech.products - GET /products - total=16 page=1 limit=12"
+
+Loggers:
+  - nextech           (main.py)
+  - nextech.products  (routes/products.py)
+  - nextech.auth      (routes/auth.py)
+  - nextech.stats     (routes/stats.py)
+
+Eventos logueados:
+  - Inicio de la aplicacion
+  - Cada GET /products (con total, page, limit)
+  - Cada producto creado (con id y nombre)
+  - Cada producto actualizado (PUT y PATCH)
+  - Cada producto eliminado
+  - Login exitoso (con email y rol)
+  - Login fallido (con email)
+  - Producto no encontrado (GET por id)
+  - GET /stats (con totales)
+
+
+================================================================================
+ 15. GUIA RAPIDA PARA TRABAJAR CON EL PROYECTO
+================================================================================
+
+Para agregar un endpoint nuevo:
+  1. Crear o editar un archivo en backend/routes/
+  2. Definir el router con APIRouter()
+  3. Si es archivo nuevo, registrarlo en backend/main.py: app.include_router(nuevo.router, prefix="/api")
+  4. La persistencia se hace via storage.read_json() y storage.write_json()
+  5. Para un nuevo tipo de datos, crear backend/data/nuevo_tipo.json con estructura inicial
+
+Para corregir un bug:
+  - Los bugs de validacion estan en backend/routes/products.py y backend/routes/auth.py
+  - Despues de corregir, correr pytest tests/ -v para verificar que los tests siguen pasando
+  - Puede ser necesario agregar nuevos tests que cubran el caso corregido
+
+Para modificar el frontend:
+  - Los archivos JS usan ES6 modules (import/export) sin bundler
+  - Los cambios en archivos estaticos se reflejan inmediatamente (no hay build)
+  - El frontend consume la API via js/api.js (no hacer fetch directamente)
+
+Para ver la documentacion de la API:
+  - Con el servidor corriendo: http://localhost:3000/docs (Swagger UI interactivo)
+  - Permite probar endpoints directamente desde el navegador
+
+
+================================================================================
+ FIN DEL ARCHIVO DE CONTEXTO
+================================================================================

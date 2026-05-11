@@ -1,4 +1,344 @@
 ================================================================================
+ DOCUMENTO DE REQUERIMIENTOS REFINADOS Y REGLAS DE NEGOCIO
+ Proyecto: NexTech - E-commerce de Tecnologia
+ Materia:  Testing de Aplicaciones | UADE - Curso 560928
+ Docente:  Ariel A. Loffreda
+ Entrega:  22/06/2026
+================================================================================
+
+INDICE
+------
+  1. Descripcion del sistema
+  2. Alcance del proyecto
+  3. Requerimientos Funcionales (RF)
+  4. Requerimientos No Funcionales (RNF)
+  5. Reglas de Negocio (RN)
+  6. Endpoints del sistema
+  7. Supuestos y restricciones
+  8. Backlog inicial
+
+
+================================================================================
+ 1. DESCRIPCION DEL SISTEMA
+================================================================================
+
+NexTech es un sistema de e-commerce orientado a la venta de productos
+tecnologicos (laptops, celulares, accesorios, etc.). Permite a los usuarios
+registrarse, iniciar sesion y navegar el catalogo de productos con filtros y
+busqueda. Los administradores pueden gestionar el catalogo completo (crear,
+editar y eliminar productos). El sistema expone una API REST desarrollada en
+Python con FastAPI, con persistencia en archivos JSON y un frontend estatico
+en HTML/CSS/JS.
+
+Tecnologias utilizadas:
+  - Backend:     Python 3.10+ con FastAPI
+  - Persistencia: Archivos JSON (data/products.json, data/users.json)
+  - Frontend:    HTML / CSS / JavaScript (estatico)
+  - Documentacion automatica de API: Swagger UI en /docs
+  - Logs:        backend/logs/app.log
+  - Tests:       pytest (backend/tests/)
+
+
+================================================================================
+ 2. ALCANCE DEL PROYECTO
+================================================================================
+
+INCLUIDO EN EL ALCANCE:
+  - Registro e inicio de sesion de usuarios
+  - Gestion de catalogo de productos (CRUD completo para admins)
+  - Busqueda y filtrado de productos
+  - Visualizacion de estadisticas del catalogo
+  - Dos endpoints nuevos implementados por el equipo:
+      POST /api/wishlist          (agregar producto a lista de deseos)
+      GET  /api/wishlist/:user_id (obtener lista de deseos de un usuario)
+  - Pruebas manuales, de endpoints, automatizadas (Selenium) y no funcionales (JMeter)
+  - Seguimiento de defectos encontrados
+
+NO INCLUIDO EN EL ALCANCE:
+  - Proceso de compra / checkout / pagos
+  - Envio de emails de confirmacion
+  - Recuperacion de contrasena
+  - Panel de estadisticas en el frontend
+  - Gestion de roles desde la interfaz
+
+
+================================================================================
+ 3. REQUERIMIENTOS FUNCIONALES (RF)
+================================================================================
+
+MODULO: AUTENTICACION
+----------------------
+
+RF-01: Registro de usuario comun
+  El sistema debe permitir que un nuevo usuario se registre proporcionando
+  nombre, email y contrasena. Al registrarse exitosamente, el sistema debe
+  crear una cuenta con rol "usuario" y retornar los datos del usuario creado
+  (sin la contrasena) con codigo HTTP 201.
+
+RF-02: Login de usuario comun
+  El sistema debe permitir que un usuario registrado inicie sesion con su
+  email y contrasena. Si las credenciales son correctas, debe retornar los
+  datos del usuario incluyendo su rol, con codigo HTTP 200.
+
+RF-03: Login de administrador
+  El sistema debe permitir que un usuario con rol "admin" inicie sesion
+  utilizando el mismo endpoint de login. La respuesta debe indicar el rol
+  "admin" para diferenciar el acceso en el frontend.
+
+RF-04: Rechazo de credenciales incorrectas
+  Si el email no existe o la contrasena es incorrecta, el sistema debe
+  retornar un error con codigo HTTP 401 y un mensaje descriptivo.
+
+
+MODULO: PRODUCTOS
+------------------
+
+RF-05: Listado de productos con paginacion
+  El sistema debe retornar la lista de productos de forma paginada.
+  Parametros: page (por defecto 1), limit (por defecto 12).
+  La respuesta debe incluir: data, total, page, totalPages, limit.
+
+RF-06: Filtrado de productos por categoria
+  El sistema debe permitir filtrar productos por el campo "categoria"
+  (ej: Laptops, Celulares, Accesorios). La comparacion es exacta.
+
+RF-07: Filtrado de productos por color
+  El sistema debe permitir filtrar productos por el campo "color".
+
+RF-08: Filtrado por destacado y novedades
+  El sistema debe permitir filtrar productos usando los parametros
+  "destacado=true" y "novedad=true".
+
+RF-09: Busqueda de productos por texto
+  El sistema debe permitir buscar productos por nombre, descripcion o
+  marca usando el parametro "search". La busqueda debe ser insensible
+  a mayusculas y minusculas (case-insensitive).
+  NOTA: El comportamiento actual del sistema es case-sensitive (defecto
+  detectado durante el analisis del codigo fuente).
+
+RF-10: Filtrado por rango de precios
+  El sistema debe permitir filtrar productos por precio minimo (precio_min)
+  y precio maximo (precio_max).
+
+RF-11: Ordenamiento de productos
+  El sistema debe permitir ordenar productos por nombre, precio o fecha
+  usando el parametro "sort" y el parametro "order" (asc/desc).
+
+RF-12: Detalle de un producto
+  El sistema debe retornar todos los campos de un producto especifico
+  dado su ID. Si el ID no existe, debe retornar HTTP 404.
+
+RF-13: Creacion de producto (solo admin)
+  El sistema debe permitir crear un nuevo producto con los campos:
+  nombre, descripcion, precio, stock, categoria, color, marca,
+  imagen_url, imagenes_extra, destacado, novedad, con_stock.
+  Campos obligatorios: nombre, precio.
+  El sistema debe retornar el producto creado con HTTP 201.
+
+RF-14: Reemplazo completo de producto (PUT)
+  El sistema debe permitir reemplazar todos los datos de un producto
+  existente dado su ID. Retorna HTTP 404 si no existe.
+
+RF-15: Actualizacion parcial de producto (PATCH)
+  El sistema debe permitir actualizar solo los campos enviados de un
+  producto existente, sin modificar el resto.
+
+RF-16: Eliminacion de producto (solo admin)
+  El sistema debe permitir eliminar un producto por ID.
+  Retorna HTTP 404 si el producto no existe.
+  NOTA: El sistema actual no valida autenticacion en este endpoint
+  (defecto detectado durante el analisis del codigo fuente).
+
+
+MODULO: ESTADISTICAS
+---------------------
+
+RF-17: Estadisticas del catalogo
+  El sistema debe retornar en un unico endpoint las siguientes metricas:
+  - total_productos: cantidad total de productos
+  - total_destacados: cantidad de productos con destacado=true
+  - total_novedades: cantidad de productos con novedad=true
+  - total_sin_stock: cantidad de productos con stock=0
+
+
+MODULO: LISTA DE DESEOS (WISHLIST) - Endpoints nuevos
+------------------------------------------------------
+
+RF-18: Agregar producto a lista de deseos
+  El sistema debe permitir que un usuario registrado agregue un producto
+  a su lista de deseos. Si el producto ya esta en la lista, no debe
+  duplicarse.
+  Endpoint: POST /api/wishlist
+  Body:     { "user_id": "...", "product_id": "..." }
+  Respuesta exitosa: HTTP 201 con la lista actualizada
+
+RF-19: Obtener lista de deseos de un usuario
+  El sistema debe retornar todos los productos en la lista de deseos de
+  un usuario especifico.
+  Endpoint: GET /api/wishlist/:user_id
+  Respuesta exitosa: HTTP 200 con lista de productos
+  Si el usuario no tiene wishlist, retornar lista vacia (no 404).
+
+
+================================================================================
+ 4. REQUERIMIENTOS NO FUNCIONALES (RNF)
+================================================================================
+
+RNF-01: Tiempo de respuesta
+  El sistema debe responder a cualquier request en menos de 2 segundos
+  bajo condiciones normales de uso (un usuario, conexion local).
+  Bajo carga de 50 usuarios concurrentes, el tiempo promedio no deberia
+  superar los 2 segundos en el endpoint GET /api/products.
+
+RNF-02: Validacion de contrasena en registro
+  La contrasena ingresada durante el registro debe tener un minimo de
+  8 caracteres. Si no cumple, el sistema debe retornar HTTP 400.
+  NOTA: El sistema actual NO valida longitud minima de contrasena
+  (defecto detectado durante el analisis del codigo fuente).
+
+RNF-03: Codigos HTTP correctos
+  Los errores deben retornar codigos HTTP semanticamente correctos:
+  - 400: datos de entrada invalidos
+  - 401: credenciales incorrectas o falta de autenticacion
+  - 404: recurso no encontrado
+  - 422: estructura del cuerpo del request invalida (Pydantic)
+  - 201: recurso creado exitosamente
+  - 204: eliminacion exitosa (sin contenido en respuesta)
+
+RNF-04: Proteccion de endpoints de escritura
+  Los endpoints que modifican datos (POST, PUT, PATCH, DELETE de productos)
+  deben requerir autenticacion con rol admin.
+  NOTA: Actualmente ninguno de estos endpoints valida autenticacion
+  (defecto detectado - en el alcance del TP, se testea el comportamiento
+  actual y se reporta como defecto).
+
+RNF-05: Disponibilidad del sistema
+  El sistema debe estar disponible durante toda la jornada de pruebas
+  (corriendo localmente en el puerto 3000).
+
+RNF-06: Consistencia de datos
+  Los cambios realizados mediante la API (crear, editar, eliminar) deben
+  reflejarse inmediatamente en las consultas posteriores.
+
+
+================================================================================
+ 5. REGLAS DE NEGOCIO (RN)
+================================================================================
+
+RN-01: Precio mayor a cero
+  El precio de un producto no puede ser 0 ni negativo.
+  Esta validacion aplica en creacion (POST) y reemplazo completo (PUT).
+  NOTA: En actualizacion parcial (PATCH) esta regla NO se valida
+  actualmente (defecto detectado durante el analisis del codigo fuente).
+
+RN-02: Email unico por usuario
+  No pueden existir dos usuarios registrados con el mismo email.
+  El sistema debe rechazar el registro si el email ya existe.
+  NOTA: El sistema actual NO verifica duplicados de email en el registro
+  (defecto detectado durante el analisis del codigo fuente).
+
+RN-03: Solo el admin puede gestionar productos
+  Los endpoints de creacion, modificacion y eliminacion de productos
+  deben estar restringidos al rol "admin". Los usuarios con rol
+  "usuario" no deben poder acceder a estas operaciones.
+  NOTA: Actualmente esta restriccion no esta implementada (defecto).
+
+RN-04: Stock no puede ser negativo
+  El stock de un producto no puede ser un valor negativo.
+  Si se intenta crear o actualizar un producto con stock < 0,
+  el sistema debe rechazarlo.
+
+RN-05: Nombre de producto obligatorio
+  El nombre de un producto no puede estar vacio ni contener solo espacios.
+  Esta validacion aplica en POST, PUT y PATCH cuando se incluye el campo.
+
+RN-06: Unicidad del producto en la lista de deseos
+  Un mismo producto no puede aparecer mas de una vez en la lista de
+  deseos de un mismo usuario.
+
+RN-07: Consistencia entre stock y con_stock
+  El campo booleano "con_stock" deberia reflejar si el producto tiene
+  stock disponible (stock > 0). La estadistica de productos sin stock
+  se calcula actualmente usando stock == 0, ignorando el campo con_stock.
+
+
+================================================================================
+ 6. ENDPOINTS DEL SISTEMA
+================================================================================
+
+  Metodo  | Endpoint                      | Descripcion
+  --------|-------------------------------|------------------------------------
+  GET     | /api/products                 | Listado paginado con filtros
+  GET     | /api/products/{id}            | Detalle de un producto
+  POST    | /api/products                 | Crear producto (admin)
+  PUT     | /api/products/{id}            | Reemplazar producto (admin)
+  PATCH   | /api/products/{id}            | Actualizar parcialmente (admin)
+  DELETE  | /api/products/{id}            | Eliminar producto (admin)
+  GET     | /api/stats                    | Estadisticas del catalogo
+  POST    | /api/auth/register            | Registrar nuevo usuario
+  POST    | /api/auth/login               | Iniciar sesion
+  POST    | /api/wishlist                 | Agregar a lista de deseos (NUEVO)
+  GET     | /api/wishlist/{user_id}       | Obtener lista de deseos (NUEVO)
+
+Nota: Documentacion interactiva disponible en http://localhost:3000/docs
+
+
+================================================================================
+ 7. SUPUESTOS Y RESTRICCIONES
+================================================================================
+
+  - El sistema corre localmente en http://localhost:3000
+  - Las contrasenas se almacenan en texto plano en el archivo JSON
+    (fuera del alcance corregir esto en el TP, se registra como riesgo)
+  - No existe manejo de sesiones ni tokens JWT; la autenticacion es
+    validada unicamente al momento del login
+  - El carrito de compras se maneja en el frontend via localStorage
+    (no hay endpoint de carrito en el backend)
+  - Los datos iniciales (productos y usuarios) estan precargados en
+    backend/data/products.json y backend/data/users.json
+  - Los usuarios precargados son:
+      Admin:    admin@nextech.com     / admin123
+      Operador: operador@nextech.com  / nextech2024
+
+
+================================================================================
+ 8. BACKLOG INICIAL (SPRINT 1)
+================================================================================
+
+  ID     | Descripcion                                          | Rol      | Sprint
+  -------|------------------------------------------------------|----------|-------
+  BK-001 | Comprender la arquitectura del backend               | Dev      | 1
+  BK-002 | Documentar requerimientos y reglas de negocio        | PM       | 1
+  BK-003 | Armar y distribuir backlog en el equipo              | PM       | 1
+  BK-004 | Diseno de casos de prueba modulo Auth                | Tester 1 | 2
+  BK-005 | Diseno de casos de prueba modulo Productos           | Tester 1 | 2
+  BK-006 | Diseno de casos de prueba modulo Admin               | Tester 1 | 2
+  BK-007 | Ejecucion manual de casos de prueba                  | Tester 1 | 2
+  BK-008 | Registro de defectos encontrados                     | Tester 1 | 2
+  BK-009 | Configuracion coleccion Postman - Auth               | Tester 2 | 2
+  BK-010 | Configuracion coleccion Postman - Productos          | Tester 2 | 2
+  BK-011 | Implementar endpoint POST /api/wishlist              | Dev      | 2
+  BK-012 | Implementar endpoint GET /api/wishlist/:user_id      | Dev      | 2
+  BK-013 | Pruebas Postman de endpoints existentes              | Tester 2 | 3
+  BK-014 | Pruebas Postman de endpoints nuevos (wishlist)       | Tester 2 | 3
+  BK-015 | Automatizacion Selenium - flujo registro             | Tester 1 | 3
+  BK-016 | Automatizacion Selenium - flujo login                | Tester 1 | 3
+  BK-017 | Automatizacion Selenium - flujo busqueda             | Tester 1 | 3
+  BK-018 | Correccion de defectos reportados                    | Dev      | 3
+  BK-019 | Pruebas de regresion post-correcciones               | Tester 1 | 3
+  BK-020 | Pruebas JMeter - carga en GET /api/products          | Tester 2 | 4
+  BK-021 | Pruebas JMeter - carga en POST /api/auth/login       | Tester 2 | 4
+  BK-022 | Plan de pruebas - version final                      | PM       | 4
+  BK-023 | Matriz de trazabilidad completa                      | PM       | 4
+  BK-024 | Retrospectiva del equipo                             | PM       | 4
+  BK-025 | Preparacion de slides para presentacion              | Todos    | 4
+
+================================================================================
+ FIN DEL DOCUMENTO
+ Version: 1.0 | Sprint 1 | Fecha: 11/05/2026
+================================================================================
+
+================================================================================
  NexTech - TP Testing de Aplicaciones - UADE | Curso 560928
  Docente: Ariel A. Loffreda | Entrega: 22/06/2026 | Presentacion: 26/06/2026
 ================================================================================
@@ -342,3 +682,4 @@ Sprint 3:  hasta 12/06  - Pruebas endpoints Postman, Selenium, regresion
 Sprint 4:  hasta 19/06  - JMeter, consolidacion, preparacion presentacion
 Entrega:   22/06/2026
 Defensa:   26/06/2026
+

@@ -4,3 +4,250 @@
 2026-05-11 14:54:26,590 [INFO] nextech - NexTech API iniciada correctamente
 2026-05-11 14:54:31,743 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
 2026-05-11 14:54:31,744 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 15:44:11,873 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-11 15:44:14,888 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 15:44:14,888 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 15:44:30,423 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 15:44:30,423 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 15:44:59,755 [INFO] nextech.products - GET /products - total=16 page=1 limit=12
+2026-05-11 15:45:01,462 [INFO] nextech.products - GET /products - total=4 page=1 limit=12
+2026-05-11 15:45:02,703 [INFO] nextech.products - GET /products - total=4 page=1 limit=12
+2026-05-11 15:45:06,785 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 15:45:06,786 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 15:45:07,353 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 15:45:07,353 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 15:45:07,860 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 15:45:07,860 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 15:45:28,655 [INFO] nextech.products - GET /products - total=16 page=1 limit=12
+2026-05-11 15:46:25,423 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 15:46:25,426 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 16:40:37,382 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-11 16:40:43,340 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 16:40:43,341 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 16:54:48,387 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-11 17:05:52,749 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-11 17:05:58,443 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:05:58,448 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:06:35,135 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:06:35,136 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:06:43,501 [INFO] nextech.auth - POST /auth/login - exitoso: prueba_test_unico@example.com (rol: usuario)
+2026-05-11 17:06:43,591 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:06:43,591 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:11:49,615 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:11:49,618 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:14:19,236 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-05-11 17:14:19,391 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:14:19,401 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:14:26,815 [INFO] nextech.products - GET /products - total=4 page=1 limit=12
+2026-05-11 17:14:30,534 [INFO] nextech.products - GET /products - total=4 page=1 limit=12
+2026-05-11 17:14:31,387 [INFO] nextech.products - GET /products - total=16 page=1 limit=12
+2026-05-11 17:14:32,832 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:14:32,835 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:14:41,669 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:14:41,671 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:14:53,421 [WARNING] nextech.auth - POST /auth/login - fallo para: admin@nextech.com
+2026-05-11 17:14:56,013 [WARNING] nextech.auth - POST /auth/login - fallo para: admin@nextech.com
+2026-05-11 17:14:59,668 [WARNING] nextech.auth - POST /auth/login - fallo para: admin@nextech.com
+2026-05-11 17:14:59,892 [WARNING] nextech.auth - POST /auth/login - fallo para: admin@nextech.com
+2026-05-11 17:15:11,367 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-05-11 17:15:11,493 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:15:11,501 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:15:14,363 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-05-11 17:15:14,376 [INFO] nextech.products - GET /products - total=16 page=1 limit=999
+2026-05-11 17:20:37,171 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-11 17:20:40,023 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-05-11 17:20:40,043 [INFO] nextech.products - GET /products - total=16 page=1 limit=999
+2026-05-11 17:21:08,173 [INFO] nextech.products - POST /products - creado f8823f96-31d1-423e-ada0-85a5e2d2e54b: iphone 1
+2026-05-11 17:21:08,175 [INFO] nextech.products - POST /products - creado 3cddde9f-af0b-489d-ba95-71aa863be4d5: iphone 1
+2026-05-11 17:21:08,269 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-05-11 17:21:08,279 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-05-11 17:21:08,287 [INFO] nextech.stats - GET /stats - total=17 destacados=4 sin_stock=2
+2026-05-11 17:21:08,308 [INFO] nextech.stats - GET /stats - total=17 destacados=4 sin_stock=2
+2026-05-11 17:21:12,088 [INFO] nextech.products - PATCH /products/a0b1c002-0000-4000-8000-000000000000 - campos: ['destacado', 'fecha_actualizacion']
+2026-05-11 17:21:12,206 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-05-11 17:21:12,220 [INFO] nextech.stats - GET /stats - total=17 destacados=5 sin_stock=2
+2026-05-11 17:21:12,744 [INFO] nextech.products - PATCH /products/a0b1c002-0000-4000-8000-000000000000 - campos: ['destacado', 'fecha_actualizacion']
+2026-05-11 17:21:12,846 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-05-11 17:21:12,893 [INFO] nextech.stats - GET /stats - total=17 destacados=4 sin_stock=2
+2026-05-11 17:21:20,228 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-11 17:21:20,235 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-11 17:21:22,786 [INFO] nextech.products - GET /products - total=5 page=1 limit=12
+2026-05-11 17:21:33,590 [INFO] nextech.stats - GET /stats - total=17 destacados=4 sin_stock=2
+2026-05-11 17:21:33,617 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-05-11 17:22:12,673 [INFO] nextech.products - DELETE /products/3cddde9f-af0b-489d-ba95-71aa863be4d5
+2026-05-11 17:22:12,757 [INFO] nextech.products - GET /products - total=16 page=1 limit=999
+2026-05-11 17:22:12,778 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-05-18 13:45:27,867 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-18 13:48:10,995 [INFO] nextech.products - POST /products - creado accb1c56-faa8-4b5d-9a5e-98e0d662bd15: Test
+2026-05-18 13:49:52,785 [INFO] nextech.products - DELETE /products/accb1c56-faa8-4b5d-9a5e-98e0d662bd15
+2026-05-18 13:54:31,404 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-18 13:55:07,932 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-18 13:55:07,936 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-18 13:55:30,118 [INFO] nextech.auth - POST /auth/register - nuevo usuario: tutu@gmail.com
+2026-05-18 13:55:30,125 [INFO] nextech.auth - POST /auth/login - exitoso: tutu@gmail.com (rol: usuario)
+2026-05-18 13:55:30,169 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-18 13:55:30,172 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-18 13:55:34,583 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-05-18 13:55:34,583 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-05-18 13:56:01,128 [INFO] nextech.products - GET /products - total=16 page=1 limit=12
+2026-05-18 13:56:57,821 [WARNING] nextech.products - GET /products/2 - no encontrado
+2026-05-18 13:57:03,892 [WARNING] nextech.products - GET /products/1 - no encontrado
+2026-05-18 13:57:06,578 [INFO] nextech.products - GET /products - total=16 page=1 limit=12
+2026-05-18 13:57:51,015 [INFO] nextech.products - POST /products - creado 6204362b-7119-48e1-9369-f5e59a285a46: MacBook Air M2 duplicado
+2026-05-18 13:57:56,712 [INFO] nextech.products - GET /products - total=17 page=1 limit=12
+2026-05-18 13:58:30,030 [WARNING] nextech.products - GET /products/a0b1c001-0000-4000-8000-000000000333 - no encontrado
+2026-05-18 13:58:42,314 [INFO] nextech.products - GET /products - total=17 page=1 limit=12
+2026-05-18 13:58:43,913 [INFO] nextech.products - GET /products - total=5 page=1 limit=12
+2026-05-18 13:58:54,541 [INFO] nextech.products - GET /products - total=17 page=1 limit=12
+2026-05-18 14:02:08,161 [INFO] nextech.products - GET /products - total=17 page=1 limit=12
+2026-05-18 14:02:09,451 [INFO] nextech.products - GET /products - total=17 page=1 limit=12
+2026-05-18 14:03:22,843 [INFO] nextech.products - GET /products - total=5 page=1 limit=5
+2026-05-18 14:13:01,648 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-18 14:13:06,605 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-18 17:14:10,998 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-29 19:13:49,345 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-29 19:18:30,861 [INFO] nextech.products - GET /products - total=17 (sin paginación)
+2026-05-29 19:18:52,512 [INFO] nextech.products - GET /products - total=7 page=1 limit=4
+2026-05-29 19:18:52,512 [INFO] nextech.products - GET /products - total=5 page=1 limit=8
+2026-05-29 19:19:25,601 [INFO] nextech.products - GET /products - total=0 page=1 limit=12
+2026-05-29 19:19:30,912 [INFO] nextech.products - GET /products - total=0 page=1 limit=12
+2026-05-29 19:19:38,096 [INFO] nextech.products - GET /products - total=1 page=1 limit=12
+2026-05-29 19:20:44,880 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-05-29 19:20:44,924 [INFO] nextech.products - GET /products - total=5 page=1 limit=8
+2026-05-29 19:20:44,925 [INFO] nextech.products - GET /products - total=7 page=1 limit=4
+2026-05-29 19:20:53,177 [INFO] nextech.stats - GET /stats - total=17 destacados=5 sin_stock=2
+2026-05-29 19:20:53,183 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-05-29 19:21:06,946 [INFO] nextech.stats - GET /stats - total=17 destacados=5 sin_stock=2
+2026-05-29 19:21:06,959 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-05-29 19:21:11,607 [INFO] nextech.products - GET /products - total=5 page=1 limit=8
+2026-05-29 19:21:11,608 [INFO] nextech.products - GET /products - total=7 page=1 limit=4
+2026-05-29 19:34:19,478 [INFO] nextech - NexTech API iniciada correctamente
+2026-05-29 19:39:34,488 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:34:14,855 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:34:43,543 [INFO] nextech.products - GET /products - total=7 page=1 limit=4
+2026-06-01 14:34:43,544 [INFO] nextech.products - GET /products - total=5 page=1 limit=8
+2026-06-01 14:35:46,930 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-06-01 14:35:47,033 [INFO] nextech.products - GET /products - total=5 page=1 limit=8
+2026-06-01 14:35:47,035 [INFO] nextech.products - GET /products - total=7 page=1 limit=4
+2026-06-01 14:35:58,983 [INFO] nextech.stats - GET /stats - total=17 destacados=5 sin_stock=2
+2026-06-01 14:35:59,014 [INFO] nextech.products - GET /products - total=17 page=1 limit=999
+2026-06-01 14:36:07,459 [INFO] nextech.products - DELETE /products/17
+2026-06-01 14:36:07,466 [INFO] nextech.products - GET /products - total=16 page=1 limit=999
+2026-06-01 14:36:07,485 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-01 14:36:26,834 [INFO] nextech.products - PUT /products/1 - actualizado
+2026-06-01 14:36:26,865 [INFO] nextech.products - PUT /products/1 - actualizado
+2026-06-01 14:36:27,432 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-01 14:36:27,442 [INFO] nextech.products - GET /products - total=16 page=1 limit=999
+2026-06-01 14:36:27,470 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-01 14:38:12,212 [INFO] nextech.products - PATCH /products/1 - campos: ['nombre', 'descripcion', 'precio', 'stock', 'categoria', 'color', 'marca', 'imagen_url', 'imagenes_extra', 'destacado', 'novedad', 'con_stock', 'fecha_actualizacion']
+2026-06-01 14:38:20,681 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-01 14:38:20,702 [INFO] nextech.products - GET /products - total=16 page=1 limit=999
+2026-06-01 14:39:07,802 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:39:07,802 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:39:11,540 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:39:11,541 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:39:31,746 [INFO] nextech.auth - POST /auth/login - exitoso: operador@nextech.com (rol: operador)
+2026-06-01 14:39:31,811 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:39:31,812 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:39:37,178 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-01 14:39:37,210 [INFO] nextech.products - GET /products - total=16 page=1 limit=999
+2026-06-01 14:39:46,537 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:39:46,537 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:39:49,284 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:39:49,285 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:40:05,095 [INFO] nextech.auth - POST /auth/register - nuevo usuario: bailoignacio29@gmail.com
+2026-06-01 14:40:05,103 [INFO] nextech.auth - POST /auth/login - exitoso: bailoignacio29@gmail.com (rol: usuario)
+2026-06-01 14:40:05,177 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:40:05,178 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:40:34,311 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:40:34,315 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:41:45,395 [INFO] nextech.auth - POST /auth/register - nuevo usuario: bailoignacio29@gmail.com
+2026-06-01 14:41:45,402 [INFO] nextech.auth - POST /auth/login - exitoso: bailoignacio29@gmail.com (rol: usuario)
+2026-06-01 14:41:45,458 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:41:45,458 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 14:44:16,633 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:44:18,564 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-01 14:44:21,371 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:44:27,002 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:46:37,755 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:46:59,113 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:47:20,532 [INFO] nextech.auth - DELETE /auth/users/8
+2026-06-01 14:47:26,728 [INFO] nextech.auth - DELETE /auth/users/7
+2026-06-01 14:47:28,680 [INFO] nextech.auth - DELETE /auth/users/6
+2026-06-01 14:47:30,662 [INFO] nextech.auth - DELETE /auth/users/5
+2026-06-01 14:47:32,715 [INFO] nextech.auth - DELETE /auth/users/4
+2026-06-01 14:47:36,319 [INFO] nextech.auth - DELETE /auth/users/3
+2026-06-01 14:48:39,458 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:49:14,713 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 14:49:18,410 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 14:49:18,414 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 15:58:18,881 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 15:58:20,926 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 15:58:20,926 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 15:58:32,487 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-06-01 15:58:32,523 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 15:58:32,523 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 15:58:40,031 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 15:58:48,698 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 15:58:54,570 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 16:02:17,383 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 16:02:19,915 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 16:02:24,197 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 16:02:24,197 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 16:02:24,889 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 16:02:24,889 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 16:02:28,360 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 16:03:01,395 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 16:03:03,676 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 16:03:03,676 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 16:03:05,522 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 16:03:17,291 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 16:03:17,293 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 16:03:46,985 [INFO] nextech.auth - POST /auth/register - nuevo usuario: prueba@gmail.com
+2026-06-01 16:03:46,989 [INFO] nextech.auth - POST /auth/login - exitoso: prueba@gmail.com (rol: usuario)
+2026-06-01 16:03:47,021 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 16:03:47,021 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 16:03:51,867 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 16:32:42,334 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 16:37:21,209 [INFO] nextech.auth - POST /auth/register - nuevo usuario: prueba@nexteh.com
+2026-06-01 16:37:26,813 [INFO] nextech.auth - POST /auth/register - nuevo usuario: pruebanexteh.com
+2026-06-01 16:41:05,877 [INFO] nextech.auth - POST /auth/register - nuevo usuario: hola
+2026-06-01 16:41:27,993 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 16:41:27,994 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 16:45:43,972 [WARNING] nextech.auth - POST /auth/login - fallo para: admin@nextech.com
+2026-06-01 16:45:48,425 [WARNING] nextech.auth - POST /auth/login - fallo para: admin@nextech.com
+2026-06-01 16:45:58,266 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-06-01 16:45:58,313 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 16:45:58,313 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 16:46:02,472 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 17:00:15,372 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-01 17:00:18,974 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 17:00:22,322 [INFO] nextech.wishlist - POST /wishlist - user=1 product=5
+2026-06-01 17:00:28,618 [INFO] nextech.wishlist - GET /wishlist/1 - 1 productos
+2026-06-01 17:00:32,308 [INFO] nextech.wishlist - GET /wishlist/1 - 1 productos
+2026-06-01 17:00:32,313 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 17:00:34,127 [INFO] nextech.wishlist - POST /wishlist - user=1 product=1
+2026-06-01 17:00:36,507 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 17:00:36,507 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 17:01:07,508 [INFO] nextech.auth - POST /auth/login - exitoso: operador@nextech.com (rol: operador)
+2026-06-01 17:01:07,552 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 17:01:07,553 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 17:01:13,695 [INFO] nextech.products - GET /products - total=16 page=1 limit=12
+2026-06-01 17:01:15,286 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 17:01:16,762 [INFO] nextech.wishlist - POST /wishlist - user=2 product=1
+2026-06-01 17:01:20,755 [INFO] nextech.wishlist - GET /wishlist/2 - 1 productos
+2026-06-01 17:01:22,346 [INFO] nextech.wishlist - GET /wishlist/2 - 1 productos
+2026-06-01 17:01:22,352 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 17:01:24,881 [INFO] nextech.wishlist - DELETE /wishlist/2/1
+2026-06-01 17:01:28,195 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 17:01:28,196 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 17:01:35,162 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-06-01 17:01:35,197 [INFO] nextech.products - GET /products - total=4 page=1 limit=8
+2026-06-01 17:01:35,197 [INFO] nextech.products - GET /products - total=6 page=1 limit=4
+2026-06-01 17:01:41,105 [INFO] nextech.wishlist - GET /wishlist/1 - 2 productos
+2026-06-01 17:01:41,817 [INFO] nextech.wishlist - GET /wishlist/1 - 2 productos
+2026-06-01 17:01:41,824 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 17:01:44,514 [INFO] nextech.wishlist - DELETE /wishlist/1/1
+2026-06-01 17:01:46,374 [INFO] nextech.wishlist - GET /wishlist/1 - 1 productos
+2026-06-01 17:01:46,379 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
+2026-06-01 17:01:47,750 [INFO] nextech.wishlist - DELETE /wishlist/1/5

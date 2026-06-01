@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from routes import products, auth, stats
+from routes import products, auth, stats, wishlist
 
 # Logging: escribe en archivo y en consola
 LOG_DIR = Path(__file__).parent / "logs"
@@ -38,6 +38,7 @@ app.add_middleware(
 app.include_router(products.router, prefix="/api")
 app.include_router(auth.router, prefix="/api")
 app.include_router(stats.router, prefix="/api")
+app.include_router(wishlist.router, prefix="/api")
 
 # Sirve el frontend (public/) desde la raiz
 PUBLIC_DIR = Path(__file__).parent.parent / "public"

@@ -5,7 +5,14 @@
       "PowerShell(pip *)",
       "Bash(New-Item -ItemType Directory -Path \"C:\\\\Users\\\\sergi\\\\Desktop\\\\nextech\\\\docs\" -Force)",
       "Bash(Out-Null)",
-      "Bash(Write-Output \"ok\")"
+      "Bash(Write-Output \"ok\")",
+      "Bash(py --version)",
+      "Bash(pip show *)",
+      "Bash(python *)",
+      "Bash(curl *)",
+      "Bash(uvicorn *)",
+      "PowerShell(& \"C:\\\\Users\\\\sergi\\\\AppData\\\\Local\\\\Python\\\\bin\\\\python.exe\" --version)",
+      "PowerShell([System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"User\"\\) -split \";\" | Select-Object -First 10)"
     ]
   }
 }

@@ -1,10 +1,10 @@
 {
   "products": [
     {
-      "id": "a0b1c001-0000-4000-8000-000000000000",
+      "id": "1",
       "nombre": "MacBook Air M2",
       "descripcion": "La laptop más delgada y liviana de Apple, impulsada por el chip M2. Pantalla Liquid Retina de 13.6 pulgadas, hasta 18 horas de batería y cuerpo de aluminio reciclado. Ideal para trabajo profesional y creatividad.",
-      "precio": 720000,
+      "precio": -1000.0,
       "stock": 8,
       "categoria": "Laptops",
       "color": "Plateado",
@@ -18,10 +18,10 @@
       "novedad": true,
       "con_stock": true,
       "fecha_creacion": "2024-03-01T00:00:00",
-      "fecha_actualizacion": "2024-03-01T00:00:00"
+      "fecha_actualizacion": "2026-06-01T17:38:12.209431+00:00"
     },
     {
-      "id": "a0b1c002-0000-4000-8000-000000000000",
+      "id": "2",
       "nombre": "Dell XPS 15",
       "descripcion": "La Dell XPS 15 combina rendimiento excepcional con un diseño premium. Pantalla OLED InfinityEdge de 15.6 pulgadas, procesador Intel Core i7 de última generación y gráficos NVIDIA dedicados.",
       "precio": 680000,
@@ -41,7 +41,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c003-0000-4000-8000-000000000000",
+      "id": "3",
       "nombre": "Lenovo ThinkPad X1 Carbon",
       "descripcion": "Diseñada para profesionales exigentes. Ultraliviana con apenas 1.12 kg, pantalla IPS de 14 pulgadas, teclado certificado MIL-SPEC y batería de larga duración.",
       "precio": 590000,
@@ -61,7 +61,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c004-0000-4000-8000-000000000000",
+      "id": "4",
       "nombre": "Samsung Galaxy Book3 Pro",
       "descripcion": "Elegancia y rendimiento en perfecta armonía. Pantalla Dynamic AMOLED 2X de 16 pulgadas, procesador Intel Core i7 e integración nativa con Galaxy.",
       "precio": 550000,
@@ -81,7 +81,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c005-0000-4000-8000-000000000000",
+      "id": "5",
       "nombre": "iPhone 15 Pro",
       "descripcion": "El iPhone más avanzado hasta la fecha. Chip A17 Pro de titanio, sistema de cámara Pro con zoom óptico 5x, Dynamic Island y USB-C.",
       "precio": 800000,
@@ -101,7 +101,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c006-0000-4000-8000-000000000000",
+      "id": "6",
       "nombre": "Samsung Galaxy S24",
       "descripcion": "Galaxy AI llega al S24. Inteligencia artificial integrada para traducción en tiempo real. Pantalla Dynamic AMOLED 2X de 6.2 pulgadas y procesador Snapdragon 8 Gen 3.",
       "precio": 620000,
@@ -121,7 +121,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c007-0000-4000-8000-000000000000",
+      "id": "7",
       "nombre": "Xiaomi 14 Pro",
       "descripcion": "Co-diseñado con Leica, el Xiaomi 14 Pro lleva la fotografía móvil a otro nivel. Sensor Sony IMX989 de 1 pulgada y carga hiperrápida de 120W.",
       "precio": 480000,
@@ -141,7 +141,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c008-0000-4000-8000-000000000000",
+      "id": "8",
       "nombre": "Google Pixel 8",
       "descripcion": "El poder de Google en tus manos. Chip Google Tensor G3, cámara de 50MP con Magic Eraser y 7 años de actualizaciones garantizados.",
       "precio": 420000,
@@ -161,7 +161,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c009-0000-4000-8000-000000000000",
+      "id": "9",
       "nombre": "Sony WH-1000XM5",
       "descripcion": "El estándar de oro en cancelación de ruido. Con 8 micrófonos y procesador QN1 HD, bloquea el mundo exterior. 30 horas de batería y audio LDAC de alta resolución.",
       "precio": 280000,
@@ -181,7 +181,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c00a-0000-4000-8000-000000000000",
+      "id": "10",
       "nombre": "AirPods Pro 2da Gen",
       "descripcion": "Cancelación de ruido adaptativa H2. Audio espacial personalizado con seguimiento de cabeza, hasta 30 horas de batería con el estuche y resistencia al agua IPX4.",
       "precio": 320000,
@@ -201,7 +201,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c00b-0000-4000-8000-000000000000",
+      "id": "11",
       "nombre": "JBL Tune 770NC",
       "descripcion": "Cancelación de ruido adaptativa con sonido JBL Pure Bass. Hasta 70 horas de reproducción, plegable para mayor portabilidad y carga rápida.",
       "precio": 150000,
@@ -221,7 +221,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c00c-0000-4000-8000-000000000000",
+      "id": "12",
       "nombre": "Samsung Galaxy Buds2 Pro",
       "descripcion": "True Wireless con cancelación de ruido inteligente y audio Hi-Fi de 24 bits. Diseño ergonómico y resistencia al agua IPX7.",
       "precio": 210000,
@@ -241,7 +241,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c00d-0000-4000-8000-000000000000",
+      "id": "13",
       "nombre": "Apple Watch Series 9",
       "descripcion": "El smartwatch más avanzado de Apple. Chip S9, pantalla Always-On 2000 nits, doble toque y monitoreo de salud avanzado. Carbon neutral.",
       "precio": 380000,
@@ -261,7 +261,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c00e-0000-4000-8000-000000000000",
+      "id": "14",
       "nombre": "Samsung Galaxy Watch6",
       "descripcion": "Salud avanzada en tu muñeca. Composición corporal, seguimiento del sueño con IA, ECG y presión arterial. GPS integrado y hasta 40 horas de batería.",
       "precio": 290000,
@@ -281,7 +281,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c00f-0000-4000-8000-000000000000",
+      "id": "15",
       "nombre": "iPad Pro M2",
       "descripcion": "El iPad más potente jamás creado. Chip M2 con hasta 16GB de RAM, pantalla Liquid Retina XDR de 12.9 pulgadas con ProMotion 120Hz.",
       "precio": 750000,
@@ -301,7 +301,7 @@
       "fecha_actualizacion": "2024-03-01T00:00:00"
     },
     {
-      "id": "a0b1c010-0000-4000-8000-000000000000",
+      "id": "16",
       "nombre": "Samsung Galaxy Tab S9",
       "descripcion": "La tablet Android más potente del mercado. Pantalla Dynamic AMOLED 2X de 11 pulgadas, Snapdragon 8 Gen 2, resistencia IP68 y S Pen incluido.",
       "precio": 520000,

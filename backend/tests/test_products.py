@@ -43,10 +43,12 @@ def test_get_products_pagination():
 
 
 def test_get_product_by_id_success():
-    response = client.get("/api/products/a0b1c001-0000-4000-8000-000000000000")
+    first = client.get("/api/products?limit=1").json()["data"][0]
+    response = client.get(f"/api/products/{first['id']}")
     assert response.status_code == 200
     product = response.json()
-    assert product["nombre"] == "MacBook Air M2"
+    assert product["id"] == first["id"]
+    assert product["nombre"] == first["nombre"]
 
 
 def test_get_product_not_found():

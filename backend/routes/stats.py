@@ -16,8 +16,7 @@ def get_stats():
     total = len(products)
     destacados = sum(1 for p in products if p.get("destacado") is True)
     novedades = sum(1 for p in products if p.get("novedad") is True)
-    # Cuenta productos con stock == 0 (no usa el campo con_stock)
-    sin_stock = sum(1 for p in products if p.get("stock", 0) == 0)
+    sin_stock = sum(1 for p in products if not p.get("con_stock", True))
 
     logger.info(f"GET /stats - total={total} destacados={destacados} sin_stock={sin_stock}")
     return {

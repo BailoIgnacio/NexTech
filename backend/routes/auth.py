@@ -1,6 +1,5 @@
 import logging
-import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -33,13 +32,14 @@ def register(req: RegisterRequest):
 
     # Registra el usuario sin verificar si el email ya existe
     data = read_json("users.json")
+    new_id = str(max((int(u["id"]) for u in data["users"]), default=0) + 1)
     new_user = {
-        "id": str(uuid.uuid4()),
+        "id": new_id,
         "nombre": req.nombre,
         "email": req.email,
         "password": req.password,
         "rol": "usuario",
-        "fecha_registro": datetime.utcnow().isoformat(),
+        "fecha_registro": datetime.now(timezone.utc).isoformat(),
     }
     data["users"].append(new_user)
     write_json("users.json", data)
@@ -51,6 +51,23 @@ def register(req: RegisterRequest):
         "email": new_user["email"],
         "rol": new_user["rol"],
     }
+
+
+@router.get("/auth/users")
+def get_users():
+    data = read_json("users.json")
+    return [{"id": u["id"], "nombre": u["nombre"], "email": u["email"]} for u in data["users"]]
+
+
+@router.delete("/auth/users/{user_id}", status_code=204)
+def delete_user(user_id: str):
+    data = read_json("users.json")
+    original_len = len(data["users"])
+    data["users"] = [u for u in data["users"] if u["id"] != user_id]
+    if len(data["users"]) == original_len:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+    write_json("users.json", data)
+    logger.info(f"DELETE /auth/users/{user_id}")
 
 
 @router.post("/auth/login")

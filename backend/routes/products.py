@@ -1,6 +1,5 @@
 import logging
-import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional, List
 
 from fastapi import APIRouter, HTTPException
@@ -52,7 +51,7 @@ def get_products(
     precio_min: Optional[float] = None,
     precio_max: Optional[float] = None,
     page: int = 1,
-    limit: int = 12,
+    limit: Optional[int] = None,
     sort: Optional[str] = None,
     order: str = "asc",
 ):
@@ -98,6 +97,11 @@ def get_products(
             products = sorted(products, key=lambda p: p.get("fecha_creacion", ""), reverse=reverse)
 
     total = len(products)
+
+    if limit is None:
+        logger.info(f"GET /products - total={total} (sin paginación)")
+        return {"data": products, "total": total, "page": 1, "totalPages": 1, "limit": total}
+
     total_pages = max(1, (total + limit - 1) // limit)
     start = (page - 1) * limit
     page_data = products[start : start + limit]
@@ -124,10 +128,11 @@ def create_product(product: ProductCreate):
         raise HTTPException(status_code=400, detail="El campo precio debe ser mayor a 0")
 
     data = read_json("products.json")
-    now = datetime.utcnow().isoformat()
+    new_id = str(max((int(p["id"]) for p in data["products"]), default=0) + 1)
+    now = datetime.now(timezone.utc).isoformat()
     new_product = {
-        "id": str(uuid.uuid4()),
-        **product.dict(),
+        "id": new_id,
+        **product.model_dump(),
         "fecha_creacion": now,
         "fecha_actualizacion": now,
     }
@@ -151,9 +156,9 @@ def update_product(product_id: str, product: ProductCreate):
 
     updated = {
         "id": product_id,
-        **product.dict(),
+        **product.model_dump(),
         "fecha_creacion": data["products"][idx]["fecha_creacion"],
-        "fecha_actualizacion": datetime.utcnow().isoformat(),
+        "fecha_actualizacion": datetime.now(timezone.utc).isoformat(),
     }
     data["products"][idx] = updated
     write_json("products.json", data)
@@ -169,8 +174,8 @@ def partial_update_product(product_id: str, changes: ProductPatch):
         raise HTTPException(status_code=404, detail="Producto no encontrado")
 
     # Aplica solo los campos enviados (sin validar precio en PATCH)
-    patch_data = {k: v for k, v in changes.dict().items() if v is not None}
-    patch_data["fecha_actualizacion"] = datetime.utcnow().isoformat()
+    patch_data = {k: v for k, v in changes.model_dump().items() if v is not None}
+    patch_data["fecha_actualizacion"] = datetime.now(timezone.utc).isoformat()
     data["products"][idx].update(patch_data)
     write_json("products.json", data)
     logger.info(f"PATCH /products/{product_id} - campos: {list(patch_data.keys())}")

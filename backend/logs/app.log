@@ -251,3 +251,171 @@
 2026-06-01 17:01:46,374 [INFO] nextech.wishlist - GET /wishlist/1 - 1 productos
 2026-06-01 17:01:46,379 [INFO] nextech.products - GET /products - total=4 page=1 limit=5
 2026-06-01 17:01:47,750 [INFO] nextech.wishlist - DELETE /wishlist/1/5
+2026-06-08 14:58:39,323 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-08 14:59:34,688 [INFO] nextech - NexTech API iniciada correctamente
+2026-06-08 14:59:34,785 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,788 [INFO] nextech.auth - POST /auth/register - nuevo usuario: cp01@nextech.com
+2026-06-08 14:59:34,789 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 201 Created"
+2026-06-08 14:59:34,803 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,806 [INFO] nextech.auth - DELETE /auth/users/4
+2026-06-08 14:59:34,807 [INFO] httpx - HTTP Request: DELETE http://testserver/api/auth/users/4 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:34,811 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,813 [INFO] nextech.auth - POST /auth/register - nuevo usuario: cp02_dup@nextech.com
+2026-06-08 14:59:34,814 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 201 Created"
+2026-06-08 14:59:34,826 [INFO] nextech.auth - POST /auth/register - nuevo usuario: cp02_dup@nextech.com
+2026-06-08 14:59:34,827 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 201 Created"
+2026-06-08 14:59:34,835 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,837 [INFO] nextech.auth - DELETE /auth/users/4
+2026-06-08 14:59:34,839 [INFO] httpx - HTTP Request: DELETE http://testserver/api/auth/users/4 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:34,851 [INFO] nextech.auth - DELETE /auth/users/5
+2026-06-08 14:59:34,852 [INFO] httpx - HTTP Request: DELETE http://testserver/api/auth/users/5 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:34,855 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 400 Bad Request"
+2026-06-08 14:59:34,857 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 400 Bad Request"
+2026-06-08 14:59:34,859 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 400 Bad Request"
+2026-06-08 14:59:34,863 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,865 [INFO] nextech.auth - POST /auth/register - nuevo usuario: cp06@test.com
+2026-06-08 14:59:34,866 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 201 Created"
+2026-06-08 14:59:34,873 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,875 [INFO] nextech.auth - DELETE /auth/users/4
+2026-06-08 14:59:34,876 [INFO] httpx - HTTP Request: DELETE http://testserver/api/auth/users/4 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:34,879 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-06-08 14:59:34,880 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,882 [INFO] nextech.auth - POST /auth/login - exitoso: operador@nextech.com (rol: operador)
+2026-06-08 14:59:34,883 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,885 [WARNING] nextech.auth - POST /auth/login - fallo para: admin@nextech.com
+2026-06-08 14:59:34,885 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 401 Unauthorized"
+2026-06-08 14:59:34,887 [WARNING] nextech.auth - POST /auth/login - fallo para: noexiste@test.com
+2026-06-08 14:59:34,888 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 401 Unauthorized"
+2026-06-08 14:59:34,890 [INFO] nextech.auth - POST /auth/login - exitoso: admin@nextech.com (rol: admin)
+2026-06-08 14:59:34,891 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,893 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,895 [INFO] nextech.auth - POST /auth/register - nuevo usuario: cp13_del@test.com
+2026-06-08 14:59:34,896 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 201 Created"
+2026-06-08 14:59:34,903 [INFO] nextech.auth - DELETE /auth/users/4
+2026-06-08 14:59:34,904 [INFO] httpx - HTTP Request: DELETE http://testserver/api/auth/users/4 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:34,908 [INFO] httpx - HTTP Request: DELETE http://testserver/api/auth/users/id-inexistente-9999 "HTTP/1.1 404 Not Found"
+2026-06-08 14:59:34,912 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:34,913 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,915 [INFO] nextech.products - GET /products - total=4 (sin paginación)
+2026-06-08 14:59:34,916 [INFO] httpx - HTTP Request: GET http://testserver/api/products?categoria=Laptops "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,918 [INFO] nextech.products - GET /products - total=0 (sin paginación)
+2026-06-08 14:59:34,919 [INFO] httpx - HTTP Request: GET http://testserver/api/products?search=iphone "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,922 [INFO] nextech.products - GET /products - total=7 (sin paginación)
+2026-06-08 14:59:34,923 [INFO] httpx - HTTP Request: GET http://testserver/api/products?precio_min=500000 "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,925 [INFO] nextech.products - GET /products - total=5 (sin paginación)
+2026-06-08 14:59:34,926 [INFO] httpx - HTTP Request: GET http://testserver/api/products?precio_max=300000 "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,928 [INFO] nextech.products - GET /products - total=4 (sin paginación)
+2026-06-08 14:59:34,929 [INFO] httpx - HTTP Request: GET http://testserver/api/products?destacado=true "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,931 [INFO] nextech.products - GET /products - total=6 (sin paginación)
+2026-06-08 14:59:34,932 [INFO] httpx - HTTP Request: GET http://testserver/api/products?novedad=true "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,933 [INFO] nextech.products - GET /products - total=16 page=1 limit=5
+2026-06-08 14:59:34,934 [INFO] httpx - HTTP Request: GET http://testserver/api/products?page=1&limit=5 "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,936 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:34,938 [INFO] httpx - HTTP Request: GET http://testserver/api/products?sort=precio&order=desc "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,940 [INFO] httpx - HTTP Request: GET http://testserver/api/products/2 "HTTP/1.1 200 OK"
+2026-06-08 14:59:34,942 [WARNING] nextech.products - GET /products/9999 - no encontrado
+2026-06-08 14:59:34,943 [INFO] httpx - HTTP Request: GET http://testserver/api/products/9999 "HTTP/1.1 404 Not Found"
+2026-06-08 14:59:34,948 [INFO] nextech.products - POST /products - creado 17: CP26 Sin Auth Test
+2026-06-08 14:59:34,949 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:34,974 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:34,975 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:34,999 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,000 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,002 [INFO] nextech.products - POST /products - creado 17: CP27 Producto Válido
+2026-06-08 14:59:35,003 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,025 [INFO] nextech.products - GET /products - total=17 (sin paginación)
+2026-06-08 14:59:35,027 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,029 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:35,030 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,033 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 422 Unprocessable Entity"
+2026-06-08 14:59:35,035 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 400 Bad Request"
+2026-06-08 14:59:35,059 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,060 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,063 [INFO] nextech.products - POST /products - creado 17: CP30 Temporal
+2026-06-08 14:59:35,063 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,089 [INFO] nextech.products - PUT /products/17 - actualizado
+2026-06-08 14:59:35,090 [INFO] httpx - HTTP Request: PUT http://testserver/api/products/17 "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,117 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:35,118 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,141 [INFO] httpx - HTTP Request: PUT http://testserver/api/products/9999 "HTTP/1.1 404 Not Found"
+2026-06-08 14:59:35,144 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,145 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,147 [INFO] nextech.products - POST /products - creado 17: CP32 Temporal
+2026-06-08 14:59:35,148 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,175 [INFO] nextech.products - PATCH /products/17 - campos: ['precio', 'fecha_actualizacion']
+2026-06-08 14:59:35,177 [INFO] httpx - HTTP Request: PATCH http://testserver/api/products/17 "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,204 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:35,205 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,229 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,230 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,233 [INFO] nextech.products - POST /products - creado 17: CP33 Temporal
+2026-06-08 14:59:35,233 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,257 [INFO] nextech.products - PATCH /products/17 - campos: ['precio', 'fecha_actualizacion']
+2026-06-08 14:59:35,259 [INFO] httpx - HTTP Request: PATCH http://testserver/api/products/17 "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,282 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:35,283 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,306 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,308 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,310 [INFO] nextech.products - POST /products - creado 17: CP34 Temporal
+2026-06-08 14:59:35,311 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,334 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:35,335 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,357 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/9999 "HTTP/1.1 404 Not Found"
+2026-06-08 14:59:35,359 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-08 14:59:35,360 [INFO] httpx - HTTP Request: GET http://testserver/api/stats "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,361 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-08 14:59:35,362 [INFO] httpx - HTTP Request: GET http://testserver/api/stats "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,363 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,364 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,366 [INFO] nextech.products - POST /products - creado 17: CP37 BugStats
+2026-06-08 14:59:35,367 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,389 [INFO] nextech.stats - GET /stats - total=17 destacados=4 sin_stock=2
+2026-06-08 14:59:35,390 [INFO] httpx - HTTP Request: GET http://testserver/api/stats "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,392 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:35,393 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,420 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-08 14:59:35,421 [INFO] httpx - HTTP Request: GET http://testserver/api/stats "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,423 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,424 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,426 [INFO] nextech.stats - GET /stats - total=16 destacados=4 sin_stock=2
+2026-06-08 14:59:35,427 [INFO] httpx - HTTP Request: GET http://testserver/api/stats "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,428 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,429 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,432 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,433 [INFO] nextech.auth - POST /auth/register - nuevo usuario: cp40_plain@test.com
+2026-06-08 14:59:35,434 [INFO] httpx - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,446 [INFO] httpx - HTTP Request: GET http://testserver/api/auth/users "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,448 [INFO] nextech.auth - DELETE /auth/users/4
+2026-06-08 14:59:35,449 [INFO] httpx - HTTP Request: DELETE http://testserver/api/auth/users/4 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,450 [INFO] nextech.products - GET /products - total=16 (sin paginación)
+2026-06-08 14:59:35,451 [INFO] httpx - HTTP Request: GET http://testserver/api/products "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,453 [INFO] nextech.products - POST /products - creado 17: CP41 Temporal
+2026-06-08 14:59:35,454 [INFO] httpx - HTTP Request: POST http://testserver/api/products "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,477 [INFO] nextech.products - DELETE /products/17
+2026-06-08 14:59:35,478 [INFO] httpx - HTTP Request: DELETE http://testserver/api/products/17 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,501 [INFO] httpx - HTTP Request: GET http://testserver/api/products/8 "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,505 [INFO] nextech.wishlist - POST /wishlist - user=wl_test_cp product=2
+2026-06-08 14:59:35,506 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,525 [INFO] nextech.wishlist - POST /wishlist - user=wl_test_cp product=2
+2026-06-08 14:59:35,525 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,528 [INFO] nextech.wishlist - GET /wishlist/wl_test_cp - 1 productos
+2026-06-08 14:59:35,529 [INFO] httpx - HTTP Request: GET http://testserver/api/wishlist/wl_test_cp "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,534 [INFO] httpx - HTTP Request: GET http://testserver/api/wishlist/wl_test_cp "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,537 [INFO] nextech.wishlist - POST /wishlist - user=wl_test_cp product=2
+2026-06-08 14:59:35,538 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,542 [INFO] nextech.wishlist - DELETE /wishlist/wl_test_cp/2
+2026-06-08 14:59:35,543 [INFO] httpx - HTTP Request: DELETE http://testserver/api/wishlist/wl_test_cp/2 "HTTP/1.1 204 No Content"
+2026-06-08 14:59:35,558 [INFO] httpx - HTTP Request: DELETE http://testserver/api/wishlist/wl_test_cp/2 "HTTP/1.1 404 Not Found"
+2026-06-08 14:59:35,563 [INFO] nextech.wishlist - POST /wishlist - user=wl_test_cp product=2
+2026-06-08 14:59:35,564 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,567 [INFO] httpx - HTTP Request: DELETE http://testserver/api/wishlist/wl_test_cp/9999 "HTTP/1.1 404 Not Found"
+2026-06-08 14:59:35,571 [INFO] nextech.wishlist - PUT /wishlist/wl_test_cp - 2 productos
+2026-06-08 14:59:35,572 [INFO] httpx - HTTP Request: PUT http://testserver/api/wishlist/wl_test_cp "HTTP/1.1 200 OK"
+2026-06-08 14:59:35,596 [INFO] nextech.wishlist - POST /wishlist - user=wl_test_cp product=2
+2026-06-08 14:59:35,597 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,599 [INFO] nextech.wishlist - POST /wishlist - user=wl_test_cp product=2
+2026-06-08 14:59:35,600 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,616 [INFO] nextech.wishlist - POST /wishlist - user=wl_test_cp product=9999
+2026-06-08 14:59:35,616 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
+2026-06-08 14:59:35,629 [INFO] nextech.wishlist - POST /wishlist - user=9999 product=2
+2026-06-08 14:59:35,630 [INFO] httpx - HTTP Request: POST http://testserver/api/wishlist "HTTP/1.1 201 Created"
